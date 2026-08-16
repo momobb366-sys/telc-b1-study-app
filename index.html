@@ -5,95 +5,99 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#172033">
 <link rel="manifest" href="manifest.webmanifest">
-<title>TELC B1 Study App v4</title>
+<title>TELC B1 Study App v5</title>
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f3f5f9;color:#172033;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-header{background:#172033;color:#fff;padding:12px 14px;position:sticky;top:0;z-index:50}
-.wrap{max-width:1000px;margin:auto;padding:0 14px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-h1{font-size:19px;margin:0}
-h2{font-size:18px;margin:6px 0 10px}
-h3{font-size:15px;margin:0 0 7px}
-button,select,textarea{font:inherit}
-button,select{padding:9px 11px;border:1px solid #d5dbe5;border-radius:10px;background:#fff}
-button.primary{background:#172033;color:#fff}
-button.green{background:#2f855a;color:#fff}
-.levelBtn{background:#fff;color:#172033;font-weight:800;border:0}
-.card{background:#fff;border-radius:16px;padding:16px;margin:13px 0;box-shadow:0 3px 15px #0001}
-.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.muted{font-size:12px;color:#d7dce6}
-.small{font-size:12px;color:#667085}
-.progress{height:12px;background:#e8ebf0;border-radius:99px;overflow:hidden;margin:9px 0}
-.bar{height:100%;background:#2f855a;width:0;transition:.3s}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-.box{border:1px solid #e1e6ed;border-radius:13px;padding:13px}
-.task{cursor:pointer}
-.task.done{background:#edf8f1;border-color:#9bd2ae}
-.task.done h3{text-decoration:line-through}
-.badge{display:inline-block;border-radius:99px;background:#eef1f6;padding:5px 9px;font-size:12px;margin:2px}
-.skill{border:1px solid #e1e6ed;border-radius:13px;padding:12px;margin:8px 0}
-.skilltop{display:flex;justify-content:space-between;align-items:center}
-.skillbar{height:10px;background:#e8ebf0;border-radius:99px;overflow:hidden;margin-top:7px}
-.skillbar div{height:100%;background:#2f855a}
-.big{font-size:30px;font-weight:800}
-textarea{width:100%;min-height:120px;border:1px solid #d5dbe5;border-radius:10px;padding:10px}
-.timer{font-size:32px;font-weight:800;text-align:center;margin:7px}
-.quizq{border:1px solid #e1e6ed;border-radius:12px;padding:12px;margin:8px 0}
-.quizq.correct{background:#edf8f1}
-.quizq.wrong{background:#fff0f0}
-.check{display:block;padding:7px 0}
-#dashboard{display:none}
-#dashboard.open{display:block}
-html,body{
-width:100%;
-max-width:100%;
-overflow-x:hidden;
-}
-
-#day{
-flex:1;
-min-width:0;
-max-width:100%;
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
-}
-
-#dayTitle{
-flex-shrink:0;
-white-space:nowrap;
-}
 
 html,body{
+  margin:0;
+  padding:0;
   width:100%;
   max-width:100%;
-  margin:0;
   overflow-x:hidden!important;
 }
 
-main{
-  width:100%;
-  max-width:100%;
-  overflow:hidden;
+body{
+  background:#f3f5f9;
+  color:#172033;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+
+header{
+  background:#172033;
+  color:#fff;
+  padding:12px 14px;
+  position:sticky;
+  top:0;
+  z-index:50;
 }
 
 .wrap{
   width:100%;
   max-width:1000px;
+  margin:auto;
+  padding:0 14px;
   min-width:0;
 }
 
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  min-width:0;
+}
+
+h1{font-size:19px;margin:0}
+h2{font-size:18px;margin:6px 0 10px}
+h3{font-size:15px;margin:0 0 7px}
+p{line-height:1.5}
+
+button,select,textarea{font:inherit}
+
+button,select{
+  padding:9px 11px;
+  border:1px solid #d5dbe5;
+  border-radius:10px;
+  background:#fff;
+}
+
+button.primary{
+  background:#172033;
+  color:#fff;
+}
+
+button.green{
+  background:#2f855a;
+  color:#fff;
+}
+
+.levelBtn{
+  background:#fff;
+  color:#172033;
+  font-weight:800;
+  border:0;
+  flex-shrink:0;
+}
+
 .card{
+  background:#fff;
+  border-radius:16px;
+  padding:16px;
+  margin:13px 0;
+  box-shadow:0 3px 15px #0001;
   max-width:100%;
   min-width:0;
 }
 
 .row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
   width:100%;
   min-width:0;
-  overflow:hidden;
 }
 
 #dayTitle{
@@ -111,34 +115,173 @@ main{
   white-space:nowrap;
 }
 
+.muted{
+  font-size:12px;
+  color:#d7dce6;
+}
+
+.small{
+  font-size:12px;
+  color:#667085;
+}
+
+.progress{
+  height:12px;
+  background:#e8ebf0;
+  border-radius:99px;
+  overflow:hidden;
+  margin:9px 0;
+}
+
+.bar{
+  height:100%;
+  background:#2f855a;
+  width:0;
+  transition:.3s;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:10px;
+}
+
+.box{
+  border:1px solid #e1e6ed;
+  border-radius:13px;
+  padding:13px;
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+
+.task{
+  cursor:pointer;
+}
+
+.task.done{
+  background:#edf8f1;
+  border-color:#9bd2ae;
+}
+
+.task.done h3{
+  text-decoration:line-through;
+}
+
+.badge{
+  display:inline-block;
+  border-radius:99px;
+  background:#eef1f6;
+  padding:5px 9px;
+  font-size:12px;
+  margin:2px;
+  max-width:100%;
+  overflow-wrap:anywhere;
+}
+
+.skill{
+  border:1px solid #e1e6ed;
+  border-radius:13px;
+  padding:12px;
+  margin:8px 0;
+  min-width:0;
+}
+
+.skilltop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+
+.skillbar{
+  height:10px;
+  background:#e8ebf0;
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:7px;
+}
+
+.skillbar div{
+  height:100%;
+  background:#2f855a;
+}
+
+.big{
+  font-size:30px;
+  font-weight:800;
+}
+
+textarea{
+  width:100%;
+  max-width:100%;
+  min-height:120px;
+  border:1px solid #d5dbe5;
+  border-radius:10px;
+  padding:10px;
+  resize:vertical;
+}
+
+.timer{
+  font-size:32px;
+  font-weight:800;
+  text-align:center;
+  margin:7px;
+}
+
+.quizq{
+  border:1px solid #e1e6ed;
+  border-radius:12px;
+  padding:12px;
+  margin:8px 0;
+}
+
+.quizq.correct{
+  background:#edf8f1;
+}
+
+.quizq.wrong{
+  background:#fff0f0;
+}
+
+.check{
+  display:block;
+  padding:7px 0;
+}
+
+#dashboard{
+  display:none;
+}
+
+#dashboard.open{
+  display:block;
+}
+
+main{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+}
+
 @media(max-width:600px){
+
   .wrap{
+    width:100%;
+    max-width:100%;
     padding-left:10px;
     padding-right:10px;
   }
 
-  #day{
-    max-width:calc(100vw - 95px);
+  .top h1{
+    font-size:16px;
   }
-}
-.wrap{
-width:100%;
-max-width:100%;
-padding-left:10px;
-padding-right:10px;
-}
 
-#day{
-width:calc(100vw - 100px);
-}
+  .grid{
+    grid-template-columns:1fr;
+  }
 
-.top h1{
-font-size:16px;
-}
-
-.grid{
-grid-template-columns:1fr;
-}
+  #day{
+    max-width:calc(100vw - 100px);
+  }
 }
 </style>
 </head>
@@ -148,11 +291,17 @@ grid-template-columns:1fr;
 <header>
 <div class="wrap">
 <div class="top">
+
 <div>
 <h1>🇩🇪 TELC B1</h1>
 <div class="muted">30 Tage × 8 Stunden</div>
 </div>
-<button class="levelBtn" onclick="toggleDashboard()">📊 <span id="headerLevel">A2</span> <span id="headerPercent">0%</span></button>
+
+<button class="levelBtn" onclick="toggleDashboard()">
+📊 <span id="headerLevel">A2</span>
+<span id="headerPercent">0%</span>
+</button>
+
 </div>
 </div>
 </header>
@@ -164,40 +313,58 @@ grid-template-columns:1fr;
 <b id="dayTitle">Day 1</b>
 <select id="day"></select>
 </div>
-<div class="progress"><div id="bar" class="bar"></div></div>
+
+<div class="progress">
+<div id="bar" class="bar"></div>
+</div>
+
 <div id="stats" class="small"></div>
 </section>
 
+
 <section id="dashboard" class="card">
+
 <h2>📈 Mein Niveau</h2>
 
 <div class="box">
 <div class="small">Gesamtniveau</div>
 <div class="big" id="overallLevel">A2</div>
-<div class="progress"><div id="overallBar" class="bar"></div></div>
+
+<div class="progress">
+<div id="overallBar" class="bar"></div>
+</div>
+
 <div id="overallText" class="small"></div>
 </div>
 
 <div id="skillDashboard"></div>
 
 <div class="grid">
+
 <div class="box">
 <b>🇩🇪 A1/A2 Foundation</b>
-<div class="progress"><div id="foundationBar" class="bar"></div></div>
+<div class="progress">
+<div id="foundationBar" class="bar"></div>
+</div>
 <span id="foundationText" class="small"></span>
 </div>
 
 <div class="box">
 <b>🟢 B1 Gesamt</b>
-<div class="progress"><div id="b1Bar" class="bar"></div></div>
+<div class="progress">
+<div id="b1Bar" class="bar"></div>
+</div>
 <span id="b1Text" class="small"></span>
 </div>
 
 <div class="box">
 <b>🎯 TELC B1 Readiness</b>
-<div class="progress"><div id="telcBar" class="bar"></div></div>
+<div class="progress">
+<div id="telcBar" class="bar"></div>
+</div>
 <span id="telcText" class="small"></span>
 </div>
+
 </div>
 
 <div class="box" style="margin-top:10px">
@@ -207,75 +374,128 @@ grid-template-columns:1fr;
 <b>💪 أقوى مهارة:</b>
 <span id="strongSkill"></span>
 </div>
+
 </section>
 
+
 <section id="lesson" class="card"></section>
+
 
 <section class="card">
 <h2>🎯 8-Stunden-Checkliste</h2>
 <div id="tasks"></div>
 </section>
 
+
 <section class="card">
 <h2>🧠 Mini-Quiz</h2>
 <div id="quiz"></div>
-<button class="green" onclick="checkQuiz()">تصحيح + Score</button>
+
+<button class="green" onclick="checkQuiz()">
+تصحيح + Score
+</button>
+
 <span id="quizScore" class="small"></span>
 </section>
 
+
 <section class="card">
 <h2>🎧 Hören</h2>
+
 <p id="listening"></p>
-<p class="small">مرة للفكرة العامة، مرة للتفاصيل، ومن بعد حلل الأخطاء.</p>
+
+<p class="small">
+مرة للفكرة العامة، مرة للتفاصيل، ومن بعد حلل الأخطاء.
+</p>
 </section>
+
 
 <section class="card">
 <h2>📖 Lesen</h2>
 <p id="reading"></p>
 </section>
 
+
 <section class="card">
 <h2>✍️ Schreiben</h2>
+
 <p id="writingPrompt"></p>
-<textarea id="writing" placeholder="اكتب الجواب هنا..."></textarea>
-<p class="small">☐ جميع النقاط ☐ Verbposition ☐ Konnektoren ☐ مراجعة الأخطاء</p>
+
+<textarea
+id="writing"
+placeholder="اكتب الجواب هنا..."
+></textarea>
+
+<p class="small">
+☐ جميع النقاط
+☐ Verbposition
+☐ Konnektoren
+☐ مراجعة الأخطاء
+</p>
+
 </section>
+
 
 <section class="card">
 <h2>🗣️ Sprechen</h2>
+
 <p id="speaking"></p>
-<p class="small">سجل 5–10 دقائق وعاود الجمل الصعبة.</p>
+
+<p class="small">
+سجل 5–10 دقائق وعاود الجمل الصعبة.
+</p>
+
 </section>
+
 
 <section class="card">
 <h2>📝 Error Log</h2>
-<textarea id="errors" placeholder="الخطأ → التصحيح → السبب"></textarea>
+
+<textarea
+id="errors"
+placeholder="الخطأ → التصحيح → السبب"
+></textarea>
+
 </section>
+
 
 <section class="card">
 <h2>⏱️ Timer</h2>
+
 <div class="timer" id="timer">60:00</div>
+
 <div class="row">
+
 <button class="primary" onclick="start()">Start</button>
+
 <button onclick="pause()">Pause</button>
+
 <button onclick="resetT()">Reset</button>
+
 <button onclick="setT(15)">15m</button>
+
 <button onclick="setT(30)">30m</button>
+
 <button onclick="setT(60)">60m</button>
+
 <button onclick="setT(90)">90m</button>
+
 </div>
 </section>
+
 
 <section class="card">
 <h2>📊 Progress</h2>
 <div id="phase"></div>
 </section>
 
+
 <section class="card">
 <button onclick="wipe()">مسح جميع البيانات</button>
 </section>
 
 </main>
+
 
 <script>
 
@@ -294,397 +514,970 @@ const grammar=[
 ["Gesamt-Review","B1 Grammatik","Fehlerkartei"]
 ];
 
+
 for(let i=1;i<=30;i++){
-let phase=i<=10?
-"Phase 1 — A1/A2 Repair + B1 Aufbau":
-i<=20?
-"Phase 2 — B1 Aufbau + Output":
+
+let phase=
+i<=10
+?"Phase 1 — A1/A2 Repair + B1 Aufbau"
+:
+i<=20
+?"Phase 2 — B1 Aufbau + Output"
+:
 "Phase 3 — TELC B1 Intensiv";
 
 let g=grammar[(i-1)%10];
 
 DAYS.push({
+
 day:i,
+
 phase:phase,
-grammar:i<=10?g[0]:
-i<=20?"Output: "+["E-Mail","Meinung","Relativsätze","Pläne","Beschreiben","Formelle E-Mail","Meinung + Gründe","Persönliche Erfahrung","Vorschläge","B1 Wochen-Mock"][i-11]:
-["Lesen","Hören","Schreiben","Sprechen","Lesen + Hören","Schreiben + Sprechen","Mini-Mock","Schwachstelle","Full Mock","Analyse + Review"][i-21],
+
+grammar:
+i<=10
+?g[0]
+:
+i<=20
+?"Output: "+[
+"E-Mail",
+"Meinung",
+"Relativsätze",
+"Pläne",
+"Beschreiben",
+"Formelle E-Mail",
+"Meinung + Gründe",
+"Persönliche Erfahrung",
+"Vorschläge",
+"B1 Wochen-Mock"
+][i-11]
+:
+[
+"Lesen",
+"Hören",
+"Schreiben",
+"Sprechen",
+"Lesen + Hören",
+"Schreiben + Sprechen",
+"Mini-Mock",
+"Schwachstelle",
+"Full Mock",
+"Analyse + Review"
+][i-21],
+
 explanation:g[1],
+
 focus:g[2],
-exercise:"5–10 Übungen + eigene Sätze + Fehleranalyse",
-reading:"اقرا نص B1/TELC-like، جاوب قبل القاموس، ومن بعد حلل الأخطاء.",
-listening:"سمع 5–10 دقايق B1: الفكرة العامة ثم التفاصيل."
+
+exercise:
+"5–10 Übungen + eigene Sätze + Fehleranalyse",
+
+reading:
+"اقرا نص B1/TELC-like، جاوب قبل القاموس، ومن بعد حلل الأخطاء.",
+
+listening:
+"سمع 5–10 دقايق B1: الفكرة العامة ثم التفاصيل."
+
 });
+
 }
 
+
 const QUIZ=[
-["Ich lerne Deutsch, ___ ich in Deutschland arbeiten möchte.",["weil","obwohl","trotzdem"],0],
-["Ich helfe ___ Kollegen.",["der","dem","den"],1],
-["Gestern ___ ich sehr müde.",["war","bin","habe"],0],
-["Ich interessiere mich ___ Logistik.",["für","auf","mit"],0],
-["Das ist die Frau, ___ neben mir arbeitet.",["die","den","dem"],0],
-["Ich versuche, jeden Tag Deutsch ___.",["lernen","zu lernen","gelernt"],1],
-["Wenn ich Zeit habe, ___ ich Deutsch.",["lerne","lernen","gelernt"],0],
-["Können Sie mir sagen, ___ der Termin beginnt?",["wann","dass","weil"],0],
-["Ich bin müde, ___ lerne ich weiter.",["deshalb","trotzdem","weil"],1],
-["Ich fahre ___ Bus zur Arbeit.",["mit dem","mit den","mit der"],0]
+
+[
+"Ich lerne Deutsch, ___ ich in Deutschland arbeiten möchte.",
+["weil","obwohl","trotzdem"],
+0
+],
+
+[
+"Ich helfe ___ Kollegen.",
+["der","dem","den"],
+1
+],
+
+[
+"Gestern ___ ich sehr müde.",
+["war","bin","habe"],
+0
+],
+
+[
+"Ich interessiere mich ___ Logistik.",
+["für","auf","mit"],
+0
+],
+
+[
+"Das ist die Frau, ___ neben mir arbeitet.",
+["die","den","dem"],
+0
+],
+
+[
+"Ich versuche, jeden Tag Deutsch ___.",
+["lernen","zu lernen","gelernt"],
+1
+],
+
+[
+"Wenn ich Zeit habe, ___ ich Deutsch.",
+["lerne","lernen","gelernt"],
+0
+],
+
+[
+"Können Sie mir sagen, ___ der Termin beginnt?",
+["wann","dass","weil"],
+0
+],
+
+[
+"Ich bin müde, ___ lerne ich weiter.",
+["deshalb","trotzdem","weil"],
+1
+],
+
+[
+"Ich fahre ___ Bus zur Arbeit.",
+["mit dem","mit den","mit der"],
+0
+]
+
 ];
+
 
 const KEY="telcB1StudyV4";
 
-let old=JSON.parse(localStorage.getItem("telcB1StudyV3")||"null");
-let S=JSON.parse(localStorage.getItem(KEY)||"null");
+let old=
+JSON.parse(
+localStorage.getItem("telcB1StudyV3")||"null"
+);
+
+let S=
+JSON.parse(
+localStorage.getItem(KEY)||"null"
+);
 
 if(!S){
-S=old||{done:{},errors:{},writing:{},quiz:{},skills:{}};
+
+S=
+old||
+{
+done:{},
+errors:{},
+writing:{},
+quiz:{},
+skills:{}
+};
+
 }
 
-let cur=1,sec=3600,intv=null;
+let cur=1;
+let sec=3600;
+let intv=null;
+
 
 const blocks=[
+
 ["🔵 A1/A2 Review","1h30","foundation"],
+
 ["🟢 B1 Grammatik","1h30","grammar"],
+
 ["📚 Wortschatz","1h","vocab"],
+
 ["🎧 Hören","1h","listening"],
+
 ["📖 Lesen","1h","reading"],
+
 ["✍️ Schreiben","1h","writing"],
+
 ["🗣️ Sprechen","1h","speaking"]
+
 ];
+
 
 const writing=[
+
 "اكتب 80–100 كلمة على موضوع اليوم واستعمل Grammar ديال اليوم.",
+
 "كتب E-Mail قصيرة مرتبطة بالسكن أو العمل.",
+
 "حكي على تجربة فالماضي.",
+
 "شرح علاش كتتعلم الألمانية.",
+
 "عطي نصائح على الصحة أو الروتين.",
+
 "وصف شخص أو زميل.",
+
 "وصف الخدمة والمهام ديالك.",
+
 "حكي على رحلة أو مشكل فالنقل.",
+
 "طلب موعد أو معلومات بطريقة مهذبة.",
+
 "عاود أصعب موضوع كتابة واصلح أخطاء الأسبوع."
+
 ];
+
 
 const speaking=[
+
 "هضر 2 دقايق على الروتين ديالك.",
+
 "وصف السكن اللي عندك والسكن المثالي.",
+
 "حكي على تجربة مهمة.",
+
 "علاش كتتعلم الألمانية؟",
+
 "شنو كتدير باش تبقى بصحة مزيانة؟",
+
 "شنو هي أهم صفات الزميل؟",
+
 "وصف الخدمة والمهام ديالك.",
+
 "حكي على رحلة أو مشكل فالنقل.",
+
 "كيفاش تطلب موعد؟",
+
 "هضر على أكثر 3 أخطاء كيتعاودو عندك."
+
 ];
 
+
 function save(){
-localStorage.setItem(KEY,JSON.stringify(S));
+
+localStorage.setItem(
+KEY,
+JSON.stringify(S)
+);
+
 }
+
 
 function done(i){
+
 return !!S.done[cur+"-"+i];
+
 }
+
 
 function toggle(i){
+
 S.done[cur+"-"+i]=!done(i);
+
 save();
+
 render();
+
 }
 
+
 function renderSelect(){
+
 let x=document.getElementById("day");
-x.innerHTML=DAYS.map(d=>"<option value='"+d.day+"'>Day "+d.day+" — "+d.phase+"</option>").join("");
+
+/*
+  مهم:
+  هنا غادي يبان غير Day 1 ... Day 30
+  وما غاديش نحط Phase داخل select.
+*/
+
+x.innerHTML=
+DAYS.map(d=>
+"<option value='"+d.day+"'>Day "+d.day+"</option>"
+).join("");
+
 x.value=cur;
+
 x.onchange=()=>{
+
 cur=+x.value;
+
 render();
+
 };
+
 }
+
 
 function render(){
 
 let d=DAYS[cur-1];
 
-document.getElementById("dayTitle").textContent="Day "+cur;
+document.getElementById("dayTitle").textContent=
+"Day "+cur;
+
 
 document.getElementById("lesson").innerHTML=
-"<span class='badge'>"+d.phase+"</span>"+
-"<h2>"+d.grammar+"</h2>"+
-"<div class='box'><b>شرح:</b> "+d.explanation+
-"<br><b>Focus:</b> "+d.focus+
-"<br><b>Übung:</b> "+d.exercise+"</div>";
 
-document.getElementById("tasks").innerHTML=
-"<div class='grid'>"+
-blocks.map((b,i)=>
-"<div class='box task "+(done(i)?"done":"")+
-"' onclick='toggle("+i+")'>"+
-"<h3>"+b[0]+"</h3><b>⏱️ "+b[1]+
-"</b><p class='small'>اضغط ملي تكمل الحصة.</p></div>"
-).join("")+
+"<span class='badge'>"+
+d.phase+
+"</span>"+
+
+"<h2>"+
+d.grammar+
+"</h2>"+
+
+"<div class='box'>"+
+"<b>شرح:</b> "+d.explanation+
+"<br><b>Focus:</b> "+d.focus+
+"<br><b>Übung:</b> "+d.exercise+
 "</div>";
 
-document.getElementById("listening").textContent=d.listening;
-document.getElementById("reading").textContent=d.reading;
-document.getElementById("writingPrompt").textContent=writing[Math.min(cur-1,9)];
-document.getElementById("speaking").textContent=speaking[Math.min(cur-1,9)];
 
-document.getElementById("errors").value=S.errors[cur]||"";
-document.getElementById("writing").value=S.writing[cur]||"";
+document.getElementById("tasks").innerHTML=
+
+"<div class='grid'>"+
+
+blocks.map((b,i)=>
+
+"<div class='box task "+
+(done(i)?"done":"")+
+"' onclick='toggle("+i+")'>"+
+
+"<h3>"+b[0]+"</h3>"+
+
+"<b>⏱️ "+b[1]+"</b>"+
+
+"<p class='small'>"+
+"اضغط ملي تكمل الحصة."+
+"</p>"+
+
+"</div>"
+
+).join("")+
+
+"</div>";
+
+
+document.getElementById("listening").textContent=
+d.listening;
+
+document.getElementById("reading").textContent=
+d.reading;
+
+
+document.getElementById("writingPrompt").textContent=
+writing[Math.min(cur-1,9)];
+
+document.getElementById("speaking").textContent=
+speaking[Math.min(cur-1,9)];
+
+
+document.getElementById("errors").value=
+S.errors[cur]||"";
+
+document.getElementById("writing").value=
+S.writing[cur]||"";
+
 
 document.getElementById("errors").oninput=e=>{
+
 S.errors[cur]=e.target.value;
+
 save();
+
 };
+
 
 document.getElementById("writing").oninput=e=>{
+
 S.writing[cur]=e.target.value;
+
 save();
+
 };
 
+
 renderQuiz();
+
 stats();
+
 dashboard();
+
 }
+
 
 function renderQuiz(){
 
-let n=cur<=10?5:cur<=20?7:10;
+let n=
+cur<=10
+?5
+:
+cur<=20
+?7
+:
+10;
+
 
 document.getElementById("quiz").innerHTML=
+
 QUIZ.slice(0,n).map((q,i)=>
+
 "<div class='quizq' id='q"+i+"'>"+
-"<b>"+(i+1)+". "+q[0]+"</b>"+
+
+"<b>"+
+(i+1)+". "+
+q[0]+
+"</b>"+
+
 q[1].map((a,j)=>
-"<label class='check'><input type='radio' name='q"+i+"' value='"+j+"'> "+a+"</label>"
+
+"<label class='check'>"+
+"<input type='radio' name='q"+i+"' value='"+j+"'> "+
+a+
+"</label>"
+
 ).join("")+
+
 "</div>"
+
 ).join("");
 
+
 document.getElementById("quizScore").textContent="";
+
 }
+
 
 function checkQuiz(){
 
-let n=cur<=10?5:cur<=20?7:10;
+let n=
+cur<=10
+?5
+:
+cur<=20
+?7
+:
+10;
+
 let score=0;
+
 
 for(let i=0;i<n;i++){
 
 let q=QUIZ[i];
-let a=document.querySelector("input[name=q"+i+"]:checked");
-let box=document.getElementById("q"+i);
 
-box.classList.remove("correct","wrong");
+let a=
+document.querySelector(
+"input[name=q"+i+"]:checked"
+);
 
-if(a&&+a.value===q[2]){
+let box=
+document.getElementById("q"+i);
+
+box.classList.remove(
+"correct",
+"wrong"
+);
+
+
+if(
+a &&
++a.value===q[2]
+){
+
 score++;
+
 box.classList.add("correct");
+
 }else{
+
 box.classList.add("wrong");
+
 }
 
 }
+
 
 S.quiz[cur]=score/n;
+
 save();
 
+
 document.getElementById("quizScore").textContent=
-" — Score: "+score+"/"+n;
+" — Score: "+
+score+
+"/"+
+n;
+
 
 dashboard();
+
 }
+
 
 function stats(){
 
 let total=210;
-let n=Object.values(S.done).filter(Boolean).length;
 
-document.getElementById("bar").style.width=(n/total*100)+"%";
+let n=
+Object.values(S.done)
+.filter(Boolean)
+.length;
+
+
+document.getElementById("bar").style.width=
+(n/total*100)+"%";
+
 
 document.getElementById("stats").textContent=
-n+" / "+total+" حصص مكتملة • "+Math.round(n/total*100)+"%";
+n+
+" / "+
+total+
+" حصص مكتملة • "+
+Math.round(n/total*100)+
+"%";
+
 
 let a=[0,0,0];
 
-for(let d=1;d<=30;d++)
-for(let i=0;i<7;i++)
-if(S.done[d+"-"+i])
-a[d<=10?0:d<=20?1:2]++;
-
-document.getElementById("phase").innerHTML=
-"<span class='badge'>Phase 1: "+a[0]+"/70</span>"+
-"<span class='badge'>Phase 2: "+a[1]+"/70</span>"+
-"<span class='badge'>Phase 3: "+a[2]+"/70</span>";
-}
-
-function skillScore(skill){
-
-let total=30*7;
-let completed=0;
 
 for(let d=1;d<=30;d++){
 
-let index=blocks.findIndex(x=>x[2]===skill);
+for(let i=0;i<7;i++){
 
-if(index>=0 && S.done[d+"-"+index])
-completed++;
+if(
+S.done[d+"-"+i]
+){
+
+a[
+d<=10
+?0
+:
+d<=20
+?1
+:
+2
+]++;
+
 }
+
+}
+
+}
+
+
+document.getElementById("phase").innerHTML=
+
+"<span class='badge'>"+
+"Phase 1: "+
+a[0]+
+"/70"+
+"</span>"+
+
+"<span class='badge'>"+
+"Phase 2: "+
+a[1]+
+"/70"+
+"</span>"+
+
+"<span class='badge'>"+
+"Phase 3: "+
+a[2]+
+"/70"+
+"</span>";
+
+}
+
+
+function skillScore(skill){
+
+let completed=0;
+
+
+for(let d=1;d<=30;d++){
+
+let index=
+blocks.findIndex(
+x=>x[2]===skill
+);
+
+if(
+index>=0 &&
+S.done[d+"-"+index]
+){
+
+completed++;
+
+}
+
+}
+
 
 let base=completed/30;
 
-let quiz=Object.values(S.quiz||{});
-let q=quiz.length?
-quiz.reduce((a,b)=>a+b,0)/quiz.length:0;
 
-return Math.round((base*.7+q*.3)*100);
+let quiz=
+Object.values(S.quiz||{});
+
+
+let q=
+quiz.length
+?
+quiz.reduce((a,b)=>a+b,0)/quiz.length
+:
+0;
+
+
+return Math.round(
+(base*.7+q*.3)*100
+);
+
 }
+
 
 function dashboard(){
 
 let skills=[
+
 ["🧠 Wortschatz","vocab"],
+
 ["📚 Grammatik","grammar"],
+
 ["🎧 Hören","listening"],
+
 ["📖 Lesen","reading"],
+
 ["✍️ Schreiben","writing"],
+
 ["🗣️ Sprechen","speaking"]
+
 ];
 
-let scores=skills.map(x=>[x[0],skillScore(x[1])]);
 
-document.getElementById("skillDashboard").innerHTML=
-scores.map(x=>
-"<div class='skill'>"+
-"<div class='skilltop'><b>"+x[0]+"</b><b>"+x[1]+"%</b></div>"+
-"<div class='skillbar'><div style='width:"+x[1]+"%'></div></div>"+
-"</div>"
-).join("");
-
-let avg=Math.round(scores.reduce((a,b)=>a+b[1],0)/scores.length);
-
-let level=
-avg<30?"A2":
-avg<45?"A2+":
-avg<60?"B1-":
-avg<75?"B1":
-"B1+";
-
-document.getElementById("overallLevel").textContent=level;
-document.getElementById("overallBar").style.width=avg+"%";
-document.getElementById("overallText").textContent=
-"Gesamtfortschritt: "+avg+"%";
-
-document.getElementById("headerLevel").textContent=level;
-document.getElementById("headerPercent").textContent=avg+"%";
-
-let foundation=Math.min(100,Math.round(
-Object.keys(S.done).filter(k=>k.split("-")[0]<=10).length/70*100
-));
-
-let b1=Math.min(100,Math.round(
-Object.keys(S.done).filter(k=>{
-let d=+k.split("-")[0];
-return d>=11&&d<=20;
-}).length/70*100
-));
-
-let telc=Math.round(
-(scores[2][1]+scores[3][1]+scores[4][1]+scores[5][1])/4
+let scores=
+skills.map(
+x=>[x[0],skillScore(x[1])]
 );
 
-document.getElementById("foundationBar").style.width=foundation+"%";
-document.getElementById("foundationText").textContent=foundation+"%";
 
-document.getElementById("b1Bar").style.width=b1+"%";
-document.getElementById("b1Text").textContent=b1+"%";
+document.getElementById(
+"skillDashboard"
+).innerHTML=
 
-document.getElementById("telcBar").style.width=telc+"%";
-document.getElementById("telcText").textContent=telc+"%";
+scores.map(x=>
 
-let sorted=[...scores].sort((a,b)=>a[1]-b[1]);
+"<div class='skill'>"+
 
-document.getElementById("weakSkill").textContent=
-sorted[0][0]+" — "+sorted[0][1]+"%";
+"<div class='skilltop'>"+
+"<b>"+x[0]+"</b>"+
+"<b>"+x[1]+"%</b>"+
+"</div>"+
 
-document.getElementById("strongSkill").textContent=
-sorted[sorted.length-1][0]+" — "+sorted[sorted.length-1][1]+"%";
+"<div class='skillbar'>"+
+"<div style='width:"+
+x[1]+
+"%'></div>"+
+"</div>"+
+
+"</div>"
+
+).join("");
+
+
+let avg=
+Math.round(
+scores.reduce(
+(a,b)=>a+b[1],
+0
+)/scores.length
+);
+
+
+let level=
+
+avg<30
+?"A2"
+:
+avg<45
+?"A2+"
+:
+avg<60
+?"B1-"
+:
+avg<75
+?"B1"
+:
+"B1+";
+
+
+document.getElementById(
+"overallLevel"
+).textContent=level;
+
+
+document.getElementById(
+"overallBar"
+).style.width=
+avg+"%";
+
+
+document.getElementById(
+"overallText"
+).textContent=
+"Gesamtfortschritt: "+
+avg+"%";
+
+
+document.getElementById(
+"headerLevel"
+).textContent=level;
+
+
+document.getElementById(
+"headerPercent"
+).textContent=
+avg+"%";
+
+
+let foundation=
+Math.min(
+100,
+Math.round(
+Object.keys(S.done)
+.filter(
+k=>+k.split("-")[0]<=10
+)
+.length/70*100
+)
+);
+
+
+let b1=
+Math.min(
+100,
+Math.round(
+Object.keys(S.done)
+.filter(k=>{
+
+let d=+k.split("-")[0];
+
+return d>=11&&d<=20;
+
+})
+.length/70*100
+)
+);
+
+
+let telc=
+Math.round(
+(
+scores[2][1]+
+scores[3][1]+
+scores[4][1]+
+scores[5][1]
+)/4
+);
+
+
+document.getElementById(
+"foundationBar"
+).style.width=
+foundation+"%";
+
+
+document.getElementById(
+"foundationText"
+).textContent=
+foundation+"%";
+
+
+document.getElementById(
+"b1Bar"
+).style.width=
+b1+"%";
+
+
+document.getElementById(
+"b1Text"
+).textContent=
+b1+"%";
+
+
+document.getElementById(
+"telcBar"
+).style.width=
+telc+"%";
+
+
+document.getElementById(
+"telcText"
+).textContent=
+telc+"%";
+
+
+let sorted=
+[...scores].sort(
+(a,b)=>a[1]-b[1]
+);
+
+
+document.getElementById(
+"weakSkill"
+).textContent=
+sorted[0][0]+
+" — "+
+sorted[0][1]+
+"%";
+
+
+document.getElementById(
+"strongSkill"
+).textContent=
+sorted[sorted.length-1][0]+
+" — "+
+sorted[sorted.length-1][1]+
+"%";
+
 }
+
 
 function toggleDashboard(){
 
-let d=document.getElementById("dashboard");
+let d=
+document.getElementById(
+"dashboard"
+);
 
 d.classList.toggle("open");
 
-if(d.classList.contains("open"))
+
+if(
+d.classList.contains("open")
+){
+
 dashboard();
+
 }
+
+}
+
 
 function draw(){
 
-let m=Math.floor(sec/60);
-let s=sec%60;
+let m=
+Math.floor(sec/60);
 
-document.getElementById("timer").textContent=
-String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+let s=
+sec%60;
+
+
+document.getElementById(
+"timer"
+).textContent=
+
+String(m).padStart(2,"0")+
+":"+
+String(s).padStart(2,"0");
+
 }
+
 
 function setT(m){
+
 pause();
+
 sec=m*60;
+
 draw();
+
 }
+
 
 function start(){
 
 if(intv)return;
 
+
 intv=setInterval(()=>{
 
 if(sec<=0){
+
 pause();
+
 alert("⏰ سالا الوقت");
+
 return;
+
 }
 
 sec--;
+
 draw();
 
 },1000);
+
 }
+
 
 function pause(){
+
 clearInterval(intv);
+
 intv=null;
+
 }
 
+
 function resetT(){
+
 pause();
+
 sec=3600;
+
 draw();
+
 }
+
 
 function wipe(){
 
-if(confirm("مسح جميع التقدم؟")){
+if(
+confirm("مسح جميع التقدم؟")
+){
 
-S={done:{},errors:{},writing:{},quiz:{},skills:{}};
+S={
+done:{},
+errors:{},
+writing:{},
+quiz:{},
+skills:{}
+};
 
 save();
+
 render();
 
 }
+
 }
+
 
 renderSelect();
+
 render();
+
 draw();
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js");
-  });
+
+
+if("serviceWorker" in navigator){
+
+window.addEventListener(
+"load",
+()=>{
+navigator.serviceWorker.register("./sw.js");
 }
+);
+
+}
+
 </script>
+
 </body>
 </html>
