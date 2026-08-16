@@ -46,7 +46,46 @@ textarea{width:100%;min-height:120px;border:1px solid #d5dbe5;border-radius:10px
 .check{display:block;padding:7px 0}
 #dashboard{display:none}
 #dashboard.open{display:block}
-@media(max-width:600px){.top h1{font-size:16px}.grid{grid-template-columns:1fr}}
+html,body{
+width:100%;
+max-width:100%;
+overflow-x:hidden;
+}
+
+#day{
+flex:1;
+min-width:0;
+max-width:100%;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+
+#dayTitle{
+flex-shrink:0;
+white-space:nowrap;
+}
+
+@media(max-width:600px){
+.wrap{
+width:100%;
+max-width:100%;
+padding-left:10px;
+padding-right:10px;
+}
+
+#day{
+width:calc(100vw - 100px);
+}
+
+.top h1{
+font-size:16px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+}
 </style>
 </head>
 
