@@ -4,68 +4,403 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101828">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
 <title>TELC B1 • 30 Day Master Plan</title>
 
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;max-width:100%;overflow-x:hidden}
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f4f7fb;color:#172033}
+body{
+font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+background:linear-gradient(180deg,#eef4ff 0%,#f8fafc 45%,#f4f7fb 100%);
+color:#172033;
+padding-bottom:30px
+}
 button,select,textarea,input{font:inherit}
 button{border:0;cursor:pointer}
 .wrap{width:100%;max-width:1050px;margin:auto;padding:0 12px}
-header{background:#101828;color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 3px 18px #0003}
-.top{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.logo{font-weight:900;font-size:19px}.sub{font-size:11px;color:#b8c1d1}
-.levelBtn{background:#fff;color:#101828;border-radius:14px;padding:9px 12px;font-weight:800}
-.card{background:#fff;border-radius:18px;margin:13px 0;padding:15px;box-shadow:0 5px 22px #10182812}
-.hero{background:linear-gradient(135deg,#101828,#344054);color:#fff}
+
+header{
+background:linear-gradient(135deg,#101828,#1d2939,#344054);
+color:#fff;
+position:sticky;
+top:0;
+z-index:50;
+box-shadow:0 5px 25px #10182844
+}
+.top{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font-weight:950;font-size:19px;letter-spacing:-.4px}
+.sub{font-size:11px;color:#cbd5e1;margin-top:3px}
+
+.levelBtn{
+background:linear-gradient(135deg,#fff,#eef4ff);
+color:#101828;
+border-radius:15px;
+padding:10px 13px;
+font-weight:900;
+box-shadow:0 4px 12px #0002
+}
+
+.card{
+background:#fff;
+border-radius:20px;
+margin:14px 0;
+padding:16px;
+box-shadow:0 6px 25px #10182812;
+border:1px solid #e9edf3
+}
+
+.hero{
+background:
+radial-gradient(circle at 90% 10%,#7f56d955,transparent 35%),
+linear-gradient(135deg,#101828,#1d2939 60%,#344054);
+color:#fff;
+overflow:hidden;
+position:relative
+}
+
+.hero:before{
+content:"";
+position:absolute;
+width:180px;
+height:180px;
+border-radius:50%;
+background:#2e90fa22;
+right:-70px;
+bottom:-90px
+}
+
 .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .space{justify-content:space-between}
-select{padding:10px;border:1px solid #d8dee9;border-radius:11px;background:#fff;max-width:100%}
-.badge{display:inline-flex;align-items:center;gap:4px;padding:6px 10px;border-radius:99px;font-size:11px;font-weight:800;background:#eef2f7}
-.phase1{background:#e7f0ff;color:#175cd3}.phase2{background:#e8f8ef;color:#087443}.phase3{background:#f5edff;color:#6941c6}
-.big{font-size:38px;font-weight:900}.muted{font-size:12px;color:#667085}
+
+select{
+padding:11px;
+border:1px solid #d8dee9;
+border-radius:12px;
+background:#fff;
+max-width:100%;
+font-weight:700
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:4px;
+padding:6px 10px;
+border-radius:99px;
+font-size:11px;
+font-weight:900
+}
+
+.phase1{background:#dbeafe;color:#175cd3}
+.phase2{background:#dcfae6;color:#087443}
+.phase3{background:#f0e6ff;color:#6941c6}
+
+.big{
+font-size:42px;
+font-weight:950;
+letter-spacing:-1px
+}
+
+.muted{font-size:12px;color:#667085}
 .whiteMuted{color:#d0d5dd;font-size:12px}
-.progress{height:11px;background:#e9edf3;border-radius:99px;overflow:hidden}
-.progress i{display:block;height:100%;width:0;background:#12b76a;border-radius:99px;transition:.4s}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
-.box{border:1px solid #e4e7ec;border-radius:15px;padding:12px;min-width:0}
-.stat{font-size:25px;font-weight:900}
-.skill{padding:12px;border-radius:15px;margin:8px 0;background:#f8fafc}
-.skillTop{display:flex;justify-content:space-between;font-weight:800}
-.skillBar{height:9px;background:#e4e7ec;border-radius:99px;overflow:hidden;margin-top:8px}
-.skillBar i{display:block;height:100%;border-radius:99px}
-.green{background:#12b76a}.blue{background:#2e90fa}.orange{background:#f79009}
-.red{background:#f04438}.purple{background:#7f56d9}.cyan{background:#06b6d4}
-.task{position:relative;cursor:pointer;transition:.2s}
+
+.progress{
+height:11px;
+background:#e9edf3;
+border-radius:99px;
+overflow:hidden
+}
+
+.progress i{
+display:block;
+height:100%;
+width:0;
+background:linear-gradient(90deg,#12b76a,#32d583);
+border-radius:99px;
+transition:.4s
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+gap:10px
+}
+
+.box{
+border:1px solid #e4e7ec;
+border-radius:16px;
+padding:13px;
+min-width:0;
+background:linear-gradient(180deg,#fff,#fafcff)
+}
+
+.stat{
+font-size:27px;
+font-weight:950;
+margin-top:3px
+}
+
+.skill{
+padding:13px;
+border-radius:17px;
+margin:9px 0;
+background:#f8fafc;
+border:1px solid #edf0f5
+}
+
+.skillTop{
+display:flex;
+justify-content:space-between;
+font-weight:850
+}
+
+.skillBar{
+height:10px;
+background:#e4e7ec;
+border-radius:99px;
+overflow:hidden;
+margin-top:9px
+}
+
+.skillBar i{
+display:block;
+height:100%;
+border-radius:99px;
+transition:.5s
+}
+
+.green{background:linear-gradient(90deg,#12b76a,#32d583)}
+.blue{background:linear-gradient(90deg,#2e90fa,#53b1fd)}
+.orange{background:linear-gradient(90deg,#f79009,#fdb022)}
+.red{background:linear-gradient(90deg,#f04438,#f97066)}
+.purple{background:linear-gradient(90deg,#7f56d9,#9e77ed)}
+.cyan{background:linear-gradient(90deg,#06b6d4,#22d3ee)}
+
+.task{
+position:relative;
+cursor:pointer;
+transition:.2s;
+overflow:hidden
+}
+
+.task:before{
+content:"";
+position:absolute;
+left:0;
+top:0;
+bottom:0;
+width:4px;
+background:#d0d5dd
+}
+
+.task:nth-child(1):before{background:#7f56d9}
+.task:nth-child(2):before{background:#f79009}
+.task:nth-child(3):before{background:#2e90fa}
+.task:nth-child(4):before{background:#06b6d4}
+.task:nth-child(5):before{background:#12b76a}
+.task:nth-child(6):before{background:#f04438}
+.task:nth-child(7):before{background:#6941c6}
+.task:nth-child(8):before{background:#667085}
+
 .task:active{transform:scale(.98)}
-.task.done{background:#ecfdf3;border-color:#6ce9a6}
-.task.done .tick{background:#12b76a;color:#fff}
-.tick{float:right;width:27px;height:27px;border-radius:50%;background:#eef2f6;text-align:center;padding-top:4px;font-weight:900}
-.task h3{margin:0 35px 5px 0;font-size:14px}
-.task p{margin:4px 0;font-size:12px;color:#667085}
-.circleWrap{display:flex;justify-content:center;margin:8px 0}
-.circle{width:125px;height:125px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#12b76a 0deg,#12b76a var(--deg),#e9edf3 var(--deg));position:relative}
-.circle:after{content:"";position:absolute;width:94px;height:94px;background:#fff;border-radius:50%}
-.circle span{position:relative;z-index:2;font-size:22px;font-weight:900}
-.timerCircle{width:170px;height:170px}
-.timerCircle:after{width:132px;height:132px}
-.timerCircle span{font-size:28px}
-.chart{height:145px;display:flex;align-items:end;gap:4px;padding:10px 2px;border-bottom:1px solid #d0d5dd}
-.chart div{flex:1;background:#2e90fa;border-radius:5px 5px 0 0;min-height:3px}
-.chart small{font-size:8px;display:block;text-align:center;margin-top:3px}
-textarea{width:100%;min-height:120px;border:1px solid #d8dee9;border-radius:12px;padding:11px;resize:vertical}
-.btn{padding:10px 13px;border-radius:11px;background:#fff;border:1px solid #d8dee9}
-.btnDark{background:#101828;color:#fff}.btnGreen{background:#12b76a;color:#fff}.btnBlue{background:#2e90fa;color:#fff}
+
+.task.done{
+background:linear-gradient(135deg,#ecfdf3,#f7fffb);
+border-color:#6ce9a6
+}
+
+.task.done .tick{
+background:#12b76a;
+color:#fff;
+box-shadow:0 3px 8px #12b76a55
+}
+
+.tick{
+float:right;
+width:29px;
+height:29px;
+border-radius:50%;
+background:#eef2f6;
+text-align:center;
+padding-top:5px;
+font-weight:950;
+transition:.2s
+}
+
+.task h3{
+margin:0 35px 5px 0;
+font-size:14px
+}
+
+.task p{
+margin:4px 0;
+font-size:12px;
+color:#667085
+}
+
+.circleWrap{
+display:flex;
+justify-content:center;
+margin:10px 0
+}
+
+.circle{
+width:130px;
+height:130px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:conic-gradient(#12b76a 0deg,#12b76a var(--deg),#e9edf3 var(--deg));
+position:relative;
+box-shadow:0 8px 25px #10182812
+}
+
+.circle:after{
+content:"";
+position:absolute;
+width:98px;
+height:98px;
+background:#fff;
+border-radius:50%
+}
+
+.circle span{
+position:relative;
+z-index:2;
+font-size:23px;
+font-weight:950
+}
+
+.timerCircle{
+width:180px;
+height:180px;
+background:conic-gradient(#2e90fa 0deg,#2e90fa var(--deg),#e9edf3 var(--deg))
+}
+
+.timerCircle:after{
+width:140px;
+height:140px
+}
+
+.timerCircle span{font-size:29px}
+
+.chart{
+height:160px;
+display:flex;
+align-items:end;
+gap:4px;
+padding:10px 2px;
+border-bottom:1px solid #d0d5dd
+}
+
+.chart div{
+flex:1;
+background:linear-gradient(180deg,#53b1fd,#2e90fa);
+border-radius:5px 5px 0 0;
+min-height:3px
+}
+
+.chart small{
+font-size:8px;
+display:block;
+text-align:center;
+margin-top:3px
+}
+
+textarea{
+width:100%;
+min-height:120px;
+border:1px solid #d8dee9;
+border-radius:13px;
+padding:11px;
+resize:vertical;
+outline:none;
+transition:.2s
+}
+
+textarea:focus{
+border-color:#2e90fa;
+box-shadow:0 0 0 3px #2e90fa18
+}
+
+.btn{
+padding:10px 13px;
+border-radius:12px;
+background:#fff;
+border:1px solid #d8dee9;
+font-weight:750;
+transition:.2s
+}
+
+.btn:active{transform:scale(.96)}
+
+.btnDark{
+background:#101828;
+color:#fff
+}
+
+.btnGreen{
+background:linear-gradient(135deg,#12b76a,#039855);
+color:#fff
+}
+
+.btnBlue{
+background:linear-gradient(135deg,#2e90fa,#1570ef);
+color:#fff
+}
+
 .hidden{display:none}
-.err{background:#fff5f5;border-color:#fecdca}
-.ok{background:#ecfdf3;border-color:#6ce9a6}
-.mock{background:linear-gradient(135deg,#6941c6,#7f56d9);color:#fff}
+
+.err{
+background:#fff5f5;
+border-color:#fecdca
+}
+
+.ok{
+background:#ecfdf3;
+border-color:#6ce9a6
+}
+
+.mock{
+background:linear-gradient(135deg,#6941c6,#7f56d9);
+color:#fff
+}
+
+.sectionTitle{
+display:flex;
+align-items:center;
+gap:8px
+}
+
+.sectionTitle h2{margin:0}
+
+.daySelector{
+background:linear-gradient(135deg,#f8fbff,#fff);
+border:1px solid #dbe5f0;
+padding:14px;
+border-radius:17px
+}
+
 @media(max-width:600px){
- .wrap{padding:0 9px}.logo{font-size:16px}.sub{font-size:10px}
- .grid{grid-template-columns:1fr 1fr}.card{padding:12px}
- .big{font-size:32px}.circle{width:110px;height:110px}.circle:after{width:82px;height:82px}
+.wrap{padding:0 9px}
+.logo{font-size:16px}
+.sub{font-size:10px}
+.grid{grid-template-columns:1fr 1fr}
+.card{padding:12px;border-radius:17px}
+.big{font-size:34px}
+.circle{width:112px;height:112px}
+.circle:after{width:84px;height:84px}
+.timerCircle{width:165px;height:165px}
+.timerCircle:after{width:128px;height:128px}
+.stat{font-size:23px}
+}
+
+@media(max-width:380px){
+.grid{grid-template-columns:1fr}
+.levelBtn{padding:8px 10px}
 }
 </style>
 </head>
@@ -78,7 +413,10 @@ textarea{width:100%;min-height:120px;border:1px solid #d8dee9;border-radius:12px
 <div class="logo">🇩🇪 TELC B1 MASTER</div>
 <div class="sub">30 Tage × 8 Stunden • 240 Stunden</div>
 </div>
-<button class="levelBtn" onclick="toggleDash()">📊 <span id="headLevel">A2</span> · <span id="headPct">0%</span></button>
+
+<button class="levelBtn" onclick="toggleDash()">
+📊 <span id="headLevel">A2</span> · <span id="headPct">0%</span>
+</button>
 </div>
 </header>
 
@@ -91,36 +429,73 @@ textarea{width:100%;min-height:120px;border:1px solid #d8dee9;border-radius:12px
 <div class="big" id="heroDay">DAY 1</div>
 <div id="heroPhase"></div>
 </div>
-<div class="circle" id="dayCircle" style="--deg:0deg"><span id="dayPct">0%</span></div>
+
+<div class="circle" id="dayCircle" style="--deg:0deg">
+<span id="dayPct">0%</span>
 </div>
-<div class="whiteMuted" id="heroText">Heute zählt nicht Perfektion. Heute zählt die Stunde.</div>
+</div>
+
+<div class="whiteMuted" id="heroText">
+Heute zählt nicht Perfektion. Heute zählt die Stunde.
+</div>
 </section>
 
-<section class="card">
+<section class="card daySelector">
 <div class="row">
 <b>📅 اختر اليوم</b>
+
 <select id="daySelect"></select>
 </div>
-<div style="margin-top:10px" class="progress"><i id="totalBar"></i></div>
+
+<div style="margin-top:10px" class="progress">
+<i id="totalBar"></i>
+</div>
+
 <div class="muted" id="totalText"></div>
 </section>
 
 <section id="dashboard" class="hidden">
 
 <div class="card">
+<div class="sectionTitle">
 <h2>📈 Mein Dashboard</h2>
+</div>
+
 <div class="grid">
-<div class="box"><div class="muted">Gesamtniveau</div><div class="stat" id="overall">A2</div></div>
-<div class="box"><div class="muted">Tage</div><div class="stat" id="daysDone">0/30</div></div>
-<div class="box"><div class="muted">Stunden</div><div class="stat" id="hoursDone">0h</div></div>
-<div class="box"><div class="muted">🔥 Streak</div><div class="stat" id="streak">0</div></div>
+<div class="box">
+<div class="muted">Gesamtniveau</div>
+<div class="stat" id="overall">A2</div>
+</div>
+
+<div class="box">
+<div class="muted">Tage</div>
+<div class="stat" id="daysDone">0/30</div>
+</div>
+
+<div class="box">
+<div class="muted">Stunden</div>
+<div class="stat" id="hoursDone">0h</div>
+</div>
+
+<div class="box">
+<div class="muted">🔥 Streak</div>
+<div class="stat" id="streak">0</div>
+</div>
 </div>
 </div>
 
 <div class="card">
 <h3>🎯 TELC Readiness</h3>
-<div class="circleWrap"><div class="circle" id="telcCircle" style="--deg:0deg"><span id="telcPct">0%</span></div></div>
-<div class="progress"><i id="telcBar"></i></div>
+
+<div class="circleWrap">
+<div class="circle" id="telcCircle" style="--deg:0deg">
+<span id="telcPct">0%</span>
+</div>
+</div>
+
+<div class="progress">
+<i id="telcBar"></i>
+</div>
 </div>
 
 <div class="card">
@@ -141,125 +516,256 @@ textarea{width:100%;min-height:120px;border:1px solid #d8dee9;border-radius:12px
 </section>
 
 <section class="card">
+
 <div class="row space">
-<h2 style="margin:0">📚 Day <span id="currentDay">1</span></h2>
-<span id="phaseBadge" class="badge phase1">INPUT</span>
+<h2 style="margin:0">
+📚 Day <span id="currentDay">1</span>
+</h2>
+
+<span id="phaseBadge" class="badge phase1">
+INPUT
+</span>
 </div>
+
 <div id="lesson"></div>
+
 </section>
 
 <section class="card">
+
 <h2>🎯 8-Stunden-Plan</h2>
+
 <div id="tasks" class="grid"></div>
+
 </section>
 
 <section class="card">
+
 <h2>🧠 Mini Quiz</h2>
+
 <div id="quiz"></div>
+
 <div class="row">
 <button class="btn btnGreen" onclick="checkQuiz()">✓ تصحيح</button>
 <span id="quizScore" class="muted"></span>
 </div>
+
 </section>
 
 <section class="card">
+
 <h2>🧠 Wortschatz</h2>
+
 <div class="box">
+
 <b id="vocabTarget">20 Wörter heute</b>
-<p class="muted">كل كلمة: Artikel + Plural + جملة. علّم الكلمات اللي راجعتي.</p>
+
+<p class="muted">
+كل كلمة: Artikel + Plural + جملة.
+علّم الكلمات اللي راجعتي.
+</p>
+
 <div class="row">
-<button class="btn btnBlue" onclick="addVocab()">+ كلمة راجعتها</button>
+
+<button class="btn btnBlue" onclick="addVocab()">
++ كلمة راجعتها
+</button>
+
 <b id="vocabCount">0 / 20</b>
+
 </div>
-<div style="margin-top:8px" class="progress"><i id="vocabBar"></i></div>
+
+<div style="margin-top:8px" class="progress">
+<i id="vocabBar"></i>
+</div>
+
 </div>
 </section>
 
 <section class="card">
+
 <h2>🎧 Hören</h2>
+
 <p id="listening"></p>
-<div class="box">1️⃣ الفكرة العامة → 2️⃣ التفاصيل → 3️⃣ الكلمات المهمة → 4️⃣ تحليل الأخطاء</div>
+
+<div class="box">
+1️⃣ الفكرة العامة → 2️⃣ التفاصيل → 3️⃣ الكلمات المهمة → 4️⃣ تحليل الأخطاء
+</div>
+
 </section>
 
 <section class="card">
+
 <h2>📖 Lesen</h2>
+
 <p id="reading"></p>
-<div class="box">⏱️ جاوب قبل القاموس. من بعد رجع للأخطاء فقط.</div>
+
+<div class="box">
+⏱️ جاوب قبل القاموس. من بعد رجع للأخطاء فقط.
+</div>
+
 </section>
 
 <section class="card">
+
 <h2>✍️ Schreiben</h2>
+
 <p id="writingPrompt"></p>
+
 <textarea id="writing" placeholder="اكتب هنا..."></textarea>
+
 <div class="row" style="margin-top:8px">
 <span class="badge">Verbposition</span>
 <span class="badge">Konnektoren</span>
 <span class="badge">Artikel</span>
 <span class="badge">Aufgabe erfüllt</span>
 </div>
+
 </section>
 
 <section class="card">
+
 <h2>🗣️ Sprechen</h2>
+
 <p id="speaking"></p>
-<div class="box">🎙️ سجل 5–10 دقائق → اسمع التسجيل → سجل الأخطاء المتكررة.</div>
+
+<div class="box">
+🎙️ سجل 5–10 دقائق → اسمع التسجيل → سجل الأخطاء المتكررة.
+</div>
+
 </section>
 
 <section class="card">
+
 <h2>📝 Error Analysis</h2>
-<p class="muted">اختار نوع الخطأ. هادشي غادي يدخل للـDashboard.</p>
+
+<p class="muted">
+اختار نوع الخطأ. هادشي غادي يدخل للـDashboard.
+</p>
+
 <div class="grid">
-<button class="btn err" onclick="addError('grammar')">🔴 Grammatik</button>
-<button class="btn err" onclick="addError('vocab')">🟠 Wortschatz</button>
-<button class="btn err" onclick="addError('timing')">🟡 Timing</button>
-<button class="btn err" onclick="addError('reading')">🔵 Aufgabe falsch verstanden</button>
+
+<button class="btn err" onclick="addError('grammar')">
+🔴 Grammatik
+</button>
+
+<button class="btn err" onclick="addError('vocab')">
+🟠 Wortschatz
+</button>
+
+<button class="btn err" onclick="addError('timing')">
+🟡 Timing
+</button>
+
+<button class="btn err" onclick="addError('reading')">
+🔵 Aufgabe falsch verstanden
+</button>
+
 </div>
+
 <textarea id="errors" placeholder="الخطأ → التصحيح → السبب"></textarea>
+
 </section>
 
 <section class="card">
+
 <h2>🧪 TELC Mock / Checkpoint</h2>
+
 <div id="checkpoint"></div>
+
 <div class="row">
-<button class="btn btnBlue" onclick="mockResult(60)">60% geschafft</button>
-<button class="btn btnGreen" onclick="mockResult(80)">80% geschafft</button>
+
+<button class="btn btnBlue" onclick="mockResult(60)">
+60% geschafft
+</button>
+
+<button class="btn btnGreen" onclick="mockResult(80)">
+80% geschafft
+</button>
+
 </div>
+
 </section>
 
 <section class="card">
+
 <h2>⏱️ Study Timer</h2>
+
 <div class="circleWrap">
+
 <div class="circle timerCircle" id="timerCircle" style="--deg:0deg">
+
 <span id="timer">60:00</span>
+
 </div>
+
 </div>
+
 <div class="row" style="justify-content:center">
-<button class="btn btnGreen" onclick="startTimer()">Start</button>
-<button class="btn" onclick="pauseTimer()">Pause</button>
-<button class="btn" onclick="resetTimer()">Reset</button>
-<button class="btn" onclick="setTimer(15)">15m</button>
-<button class="btn" onclick="setTimer(60)">60m</button>
+
+<button class="btn btnGreen" onclick="startTimer()">
+Start
+</button>
+
+<button class="btn" onclick="pauseTimer()">
+Pause
+</button>
+
+<button class="btn" onclick="resetTimer()">
+Reset
+</button>
+
+<button class="btn" onclick="setTimer(15)">
+15m
+</button>
+
+<button class="btn" onclick="setTimer(60)">
+60m
+</button>
+
 </div>
+
 </section>
 
 <section class="card">
+
 <h2>📊 Day Progress</h2>
-<div class="progress"><i id="dayBar"></i></div>
+
+<div class="progress">
+<i id="dayBar"></i>
+</div>
+
 <p class="muted" id="dayStats"></p>
+
 </section>
 
 <section class="card">
-<button class="btn" onclick="wipe()">🗑️ مسح جميع البيانات</button>
+
+<button class="btn" onclick="wipe()">
+🗑️ مسح جميع البيانات
+</button>
+
 </section>
 
 </main>
 
 <script>
-const KEY="TELC_B1_MASTER_V1";
+
+const KEY="TELC_B1_MASTER_V2";
+
 let S=JSON.parse(localStorage.getItem(KEY)||"null")||{
- done:{},vocab:{},quiz:{},errors:{},writing:{},mock:{},timerHours:{}
+done:{},
+vocab:{},
+quiz:{},
+errors:{},
+writing:{},
+mock:{},
+timerHours:{}
 };
-let cur=1,sec=3600,intv=null;
+
+let cur=1;
+let sec=3600;
+let intv=null;
 
 const tasks=[
 ["📘 Grammatik","60 min","grammar"],
@@ -324,7 +830,9 @@ const speaking=[
 "Präsentiere deine Meinung zu einem Thema."
 ];
 
-function save(){localStorage.setItem(KEY,JSON.stringify(S))}
+function save(){
+localStorage.setItem(KEY,JSON.stringify(S))
+}
 
 function phase(d){
 return d<=10?"INPUT":d<=20?"OUTPUT":"TELC EXAM";
@@ -334,38 +842,66 @@ function phaseClass(d){
 return d<=10?"phase1":d<=20?"phase2":"phase3";
 }
 
-function taskDone(d,i){return !!S.done[d+"-"+i]}
+function taskDone(d,i){
+return !!S.done[d+"-"+i]
+}
 
 function toggleTask(i){
+
 let k=cur+"-"+i;
+
 S.done[k]=!S.done[k];
-save();render();
+
+save();
+render();
+
 }
 
 function selectDays(){
+
 let el=document.getElementById("daySelect");
+
 el.innerHTML="";
+
 for(let i=1;i<=30;i++){
+
 let o=document.createElement("option");
-o.value=i;o.textContent="Day "+i+" — "+phase(i);
+
+o.value=i;
+o.textContent="Day "+i+" — "+phase(i);
+
 el.appendChild(o);
+
 }
+
 el.value=cur;
-el.onchange=()=>{cur=+el.value;render()};
+
+el.onchange=()=>{
+cur=+el.value;
+render();
+};
+
 }
 
 function render(){
+
 document.getElementById("currentDay").textContent=cur;
 document.getElementById("heroDay").textContent="DAY "+cur;
 
 let ph=phase(cur);
+
 let pb=document.getElementById("phaseBadge");
-pb.textContent=ph;pb.className="badge "+phaseClass(cur);
-document.getElementById("heroPhase").innerHTML="<span class='badge "+phaseClass(cur)+"'>"+ph+"</span>";
+
+pb.textContent=ph;
+pb.className="badge "+phaseClass(cur);
+
+document.getElementById("heroPhase").innerHTML=
+"<span class='badge "+phaseClass(cur)+"'>"+ph+"</span>";
 
 let g=grammar[(cur-1)%10];
 
-let explanation=cur<=10?
+let explanation=
+cur<=10?
 "Phase 1: Input — ركز على Grammar + Vocabulary + Listening.":
 cur<=20?
 "Phase 2: Output — دابا خاص الألمانية تخرج منك: Schreiben + Sprechen + Review.":
@@ -373,244 +909,636 @@ cur<=20?
 
 document.getElementById("lesson").innerHTML=
 "<p><b>"+g[0]+"</b> — "+g[1]+"</p>"+
-"<div class='box'><b>Beispiel:</b> "+g[2]+"<br><span class='muted'>"+explanation+"</span></div>";
+"<div class='box'><b>Beispiel:</b> "+g[2]+"<br>"+
+"<span class='muted'>"+explanation+"</span></div>";
 
 let labels=tasks.map((t,i)=>
+
 "<div class='box task "+(taskDone(cur,i)?"done":"")+"' onclick='toggleTask("+i+")'>"+
-"<span class='tick'>"+(taskDone(cur,i)?"✓":"")+"</span>"+
-"<h3>"+t[0]+"</h3><p>⏱️ "+t[1]+"</p>"+
-"<p>"+taskDescription(t[2])+"</p></div>"
+
+"<span class='tick'>"+
+(taskDone(cur,i)?"✓":"")+
+"</span>"+
+
+"<h3>"+t[0]+"</h3>"+
+
+"<p>⏱️ "+t[1]+"</p>"+
+
+"<p>"+taskDescription(t[2])+"</p>"+
+
+"</div>"
+
 ).join("");
+
 document.getElementById("tasks").innerHTML=labels;
 
 document.getElementById("listening").textContent=
-cur<=10?"30 دقيقة Listening: لا توقف الفيديو، حاول تفهم 60% فقط.":
-cur<=20?"15 دقيقة Listening/Reading فوق المستوى السابق.":
+cur<=10?
+"30 دقيقة Listening: لا توقف الفيديو، حاول تفهم 60% فقط.":
+cur<=20?
+"15 دقيقة Listening/Reading فوق المستوى السابق.":
 "30 دقيقة TELC Hören تحت التوقيت.";
 
 document.getElementById("reading").textContent=
-cur<=10?"اقرأ نص B1 بسيط، فهم الفكرة قبل القاموس.":
-cur<=20?"اقرأ نص أطول وسجل الكلمات والتراكيب المفيدة.":
+cur<=10?
+"اقرأ نص B1 بسيط، فهم الفكرة قبل القاموس.":
+cur<=20?
+"اقرأ نص أطول وسجل الكلمات والتراكيب المفيدة.":
 "Lesen TELC تحت التوقيت وسجل سبب كل خطأ.";
 
-document.getElementById("writingPrompt").textContent=writing[(cur-1)%10];
-document.getElementById("speaking").textContent=speaking[(cur-1)%10];
+document.getElementById("writingPrompt").textContent=
+writing[(cur-1)%10];
 
-document.getElementById("writing").value=S.writing[cur]||"";
-document.getElementById("errors").value=S.errors[cur]||"";
+document.getElementById("speaking").textContent=
+speaking[(cur-1)%10];
 
-document.getElementById("writing").oninput=e=>{S.writing[cur]=e.target.value;save()};
-document.getElementById("errors").oninput=e=>{S.errors[cur]=e.target.value;save()};
+document.getElementById("writing").value=
+S.writing[cur]||"";
+
+document.getElementById("errors").value=
+S.errors[cur]||"";
+
+document.getElementById("writing").oninput=e=>{
+S.writing[cur]=e.target.value;
+save()
+};
+
+document.getElementById("errors").oninput=e=>{
+S.errors[cur]=e.target.value;
+save()
+};
 
 renderQuiz();
 renderCheckpoint();
 renderVocab();
 renderProgress();
 dashboard();
+
 }
 
 function taskDescription(t){
+
 let x={
+
 grammar:"قاعدة واحدة + تمارين + جمل من عندك.",
+
 vocab:"20 كلمة جديدة/مراجعة حسب المرحلة.",
+
 listening:"فكرة عامة ثم تفاصيل ثم Error Analysis.",
+
 reading:"اقرأ → جاوب → راجع الأخطاء.",
+
 writing:"اكتب ثم راجع Grammar وKonnektoren.",
+
 speaking:"سجل صوتك، اسمع، وأصلح الأخطاء.",
+
 exam:"TELC-style tasks حسب المرحلة.",
+
 review:"راجع أخطاء اليوم ولا تعاود نفس الغلط."
+
 };
+
 return x[t];
+
 }
 
 function renderQuiz(){
+
 let n=cur<=10?5:cur<=20?7:10;
-document.getElementById("quiz").innerHTML=quiz.slice(0,n).map((q,i)=>
-"<div class='box' id='q"+i+"'><b>"+(i+1)+". "+q[0]+"</b>"+
+
+document.getElementById("quiz").innerHTML=
+
+quiz.slice(0,n).map((q,i)=>
+
+"<div class='box' id='q"+i+"'>"+
+"<b>"+(i+1)+". "+q[0]+"</b>"+
+
 q[1].map((a,j)=>
-"<label style='display:block;padding:7px 0'><input type='radio' name='q"+i+"' value='"+j+"'> "+a+"</label>"
-).join("")+"</div>").join("");
+
+"<label style='display:block;padding:7px 0'>"+
+"<input type='radio' name='q"+i+"' value='"+j+"'> "+
+a+
+"</label>"
+
+).join("")+
+
+"</div>"
+
+).join("");
+
 document.getElementById("quizScore").textContent="";
+
 }
 
 function checkQuiz(){
-let n=cur<=10?5:cur<=20?7:10,score=0;
+
+let n=cur<=10?5:cur<=20?7:10;
+
+let score=0;
+
 for(let i=0;i<n;i++){
-let a=document.querySelector("input[name=q"+i+"]:checked");
+
+let a=document.querySelector(
+"input[name=q"+i+"]:checked"
+);
+
 let box=document.getElementById("q"+i);
+
 box.classList.remove("ok","err");
-if(a&&+a.value===quiz[i][2]){score++;box.classList.add("ok")}
-else box.classList.add("err");
+
+if(a&&+a.value===quiz[i][2]){
+
+score++;
+box.classList.add("ok");
+
+}else{
+
+box.classList.add("err");
+
 }
-S.quiz[cur]=score/n;save();
-document.getElementById("quizScore").textContent=" Score: "+score+"/"+n;
+
+}
+
+S.quiz[cur]=score/n;
+
+save();
+
+document.getElementById("quizScore").textContent=
+" Score: "+score+"/"+n;
+
 dashboard();
+
 }
 
 function addVocab(){
-S.vocab[cur]=Math.min(20,(S.vocab[cur]||0)+1);
-save();renderVocab();dashboard();
+
+S.vocab[cur]=Math.min(
+20,
+(S.vocab[cur]||0)+1
+);
+
+save();
+
+renderVocab();
+dashboard();
+
 }
 
 function renderVocab(){
+
 let n=S.vocab[cur]||0;
-document.getElementById("vocabCount").textContent=n+" / 20";
-document.getElementById("vocabBar").style.width=n*5+"%";
+
+document.getElementById("vocabCount").textContent=
+n+" / 20";
+
+document.getElementById("vocabBar").style.width=
+n*5+"%";
+
 }
 
 function addError(type){
+
 S.errorsCount=S.errorsCount||{};
-S.errorsCount[type]=(S.errorsCount[type]||0)+1;
-save();dashboard();
+
+S.errorsCount[type]=
+(S.errorsCount[type]||0)+1;
+
+save();
+
+dashboard();
+
 }
 
 function mockResult(score){
-S.mock[cur]=score;save();dashboard();renderCheckpoint();
+
+S.mock[cur]=score;
+
+save();
+
+dashboard();
+renderCheckpoint();
+
 }
 
 function renderCheckpoint(){
+
 let text;
-if(cur===7||cur===14||cur===21||cur===30)
-text="<div class='box'><b>⭐ WEEKLY CHECKPOINT</b><p>وقف، راجع النتائج، وحدد أضعف مهارة قبل ما تكمل.</p></div>";
+
+if(
+cur===7||
+cur===14||
+cur===21||
+cur===30
+)
+
+text=
+"<div class='box'><b>⭐ WEEKLY CHECKPOINT</b>"+
+"<p>وقف، راجع النتائج، وحدد أضعف مهارة قبل ما تكمل.</p></div>";
+
 else if(cur>=21)
-text="<div class='box mock'><b>🧪 TELC EXAM MODE</b><p>خدم اليوم بالتوقيت وسجل نتيجة Mock.</p></div>";
+
+text=
+"<div class='box mock'><b>🧪 TELC EXAM MODE</b>"+
+"<p>خدم اليوم بالتوقيت وسجل نتيجة Mock.</p></div>";
+
 else
-text="<div class='box'><b>📌 Daily Check</b><p>كمل 8 ساعات وسجل الأخطاء.</p></div>";
+
+text=
+"<div class='box'><b>📌 Daily Check</b>"+
+"<p>كمل 8 ساعات وسجل الأخطاء.</p></div>";
+
 document.getElementById("checkpoint").innerHTML=text;
+
 }
 
 function completedHours(){
-return Object.values(S.done).filter(Boolean).length;
+
+return Object.values(S.done)
+.filter(Boolean)
+.length;
+
 }
 
 function dayCompletion(d){
+
 let n=0;
-for(let i=0;i<8;i++)if(taskDone(d,i))n++;
+
+for(let i=0;i<8;i++)
+
+if(taskDone(d,i))n++;
+
 return n/8;
+
 }
 
 function skillScore(skill){
-let map={grammar:0,vocab:1,listening:2,reading:3,writing:4,speaking:5};
-let idx=map[skill],sum=0;
-for(let d=1;d<=30;d++)if(taskDone(d,idx))sum++;
+
+let map={
+grammar:0,
+vocab:1,
+listening:2,
+reading:3,
+writing:4,
+speaking:5
+};
+
+let idx=map[skill];
+
+let sum=0;
+
+for(let d=1;d<=30;d++)
+
+if(taskDone(d,idx))sum++;
+
 let q=Object.values(S.quiz||{});
-let quizAvg=q.length?q.reduce((a,b)=>a+b,0)/q.length:0;
-return Math.round((sum/30*.7+quizAvg*.3)*100);
+
+let quizAvg=
+q.length?
+q.reduce((a,b)=>a+b,0)/q.length:
+0;
+
+return Math.round(
+(sum/30*.7+quizAvg*.3)*100
+);
+
 }
 
 function dashboard(){
+
 let skills=[
+
 ["🧠 Grammatik","grammar","purple"],
+
 ["🧠 Wortschatz","vocab","orange"],
+
 ["🎧 Hören","listening","blue"],
+
 ["📖 Lesen","reading","cyan"],
+
 ["✍️ Schreiben","writing","green"],
+
 ["🗣️ Sprechen","speaking","red"]
+
 ];
-let arr=skills.map(x=>[x[0],skillScore(x[1]),x[2]]);
-document.getElementById("skills").innerHTML=arr.map(x=>
-"<div class='skill'><div class='skillTop'><span>"+x[0]+"</span><b>"+x[1]+"%</b></div><div class='skillBar'><i class='"+x[2]+"' style='width:"+x[1]+"%'></i></div></div>"
+
+let arr=skills.map(x=>[
+x[0],
+skillScore(x[1]),
+x[2]
+]);
+
+document.getElementById("skills").innerHTML=
+
+arr.map(x=>
+
+"<div class='skill'>"+
+
+"<div class='skillTop'>"+
+"<span>"+x[0]+"</span>"+
+"<b>"+x[1]+"%</b>"+
+"</div>"+
+
+"<div class='skillBar'>"+
+"<i class='"+x[2]+"' style='width:"+x[1]+"%'></i>"+
+"</div>"+
+
+"</div>"
+
 ).join("");
 
-let avg=Math.round(arr.reduce((a,b)=>a+b[1],0)/arr.length);
-let level=avg<30?"A2":avg<45?"A2+":avg<60?"B1-":avg<75?"B1":"B1+";
+let avg=Math.round(
+arr.reduce((a,b)=>a+b[1],0)/arr.length
+);
+
+let level=
+avg<30?"A2":
+avg<45?"A2+":
+avg<60?"B1-":
+avg<75?"B1":
+"B1+";
 
 document.getElementById("overall").textContent=level;
+
 document.getElementById("headLevel").textContent=level;
-document.getElementById("headPct").textContent=avg+"%";
-document.getElementById("daysDone").textContent=Math.round(Object.keys(S.done).filter(k=>S.done[k]).length/8)+"/30";
-document.getElementById("hoursDone").textContent=Math.round(completedHours()/8)+"h";
+
+document.getElementById("headPct").textContent=
+avg+"%";
+
+document.getElementById("daysDone").textContent=
+Math.round(
+Object.keys(S.done)
+.filter(k=>S.done[k])
+.length/8
+)+"/30";
+
+document.getElementById("hoursDone").textContent=
+Math.round(completedHours()/8)+"h";
 
 let streak=0;
-for(let d=30;d>=1;d--){if(dayCompletion(d)===1)streak++;else if(streak)break}
+
+for(let d=30;d>=1;d--){
+
+if(dayCompletion(d)===1)
+
+streak++;
+
+else if(streak)
+
+break;
+
+}
+
 document.getElementById("streak").textContent=streak;
 
-let telc=Math.round((arr[2][1]+arr[3][1]+arr[4][1]+arr[5][1])/4);
-document.getElementById("telcPct").textContent=telc+"%";
-document.getElementById("telcBar").style.width=telc+"%";
-document.getElementById("telcCircle").style.setProperty("--deg",telc*3.6+"deg");
+let telc=Math.round(
+(
+arr[2][1]+
+arr[3][1]+
+arr[4][1]+
+arr[5][1]
+)/4
+);
+
+document.getElementById("telcPct").textContent=
+telc+"%";
+
+document.getElementById("telcBar").style.width=
+telc+"%";
+
+document.getElementById("telcCircle")
+.style
+.setProperty(
+"--deg",
+telc*3.6+"deg"
+);
 
 let chart="";
+
 for(let d=1;d<=30;d++){
+
 let p=dayCompletion(d)*100;
-chart+="<div style='height:"+Math.max(3,p)+"%'><small>"+d+"</small></div>";
+
+chart+=
+"<div style='height:"+
+Math.max(3,p)+
+"%' title='Day "+d+"'>"+
+"<small>"+d+"</small>"+
+"</div>";
+
 }
+
 document.getElementById("chart").innerHTML=chart;
 
 let doneDays=0;
-for(let d=1;d<=30;d++)if(dayCompletion(d)===1)doneDays++;
+
+for(let d=1;d<=30;d++)
+
+if(dayCompletion(d)===1)
+
+doneDays++;
 
 document.getElementById("badges").innerHTML=
+
 badge("🔥","3 Day Streak",streak>=3)+
+
 badge("📚","7 Days",doneDays>=7)+
+
 badge("🏆","15 Days",doneDays>=15)+
+
 badge("💯","30 Days",doneDays>=30)+
+
 badge("🧪","First Mock",Object.keys(S.mock||{}).length>=1)+
+
 badge("🎯","80% Mock",Object.values(S.mock||{}).some(x=>x>=80));
+
 }
 
 function badge(icon,name,on){
-return "<div class='box' style='opacity:"+(on?1:.35)+"'><b>"+icon+" "+name+"</b><div class='muted'>"+(on?"✓ Unlocked":"🔒 Locked")+"</div></div>";
+
+return
+
+}
+
+function badge(icon,name,on){
+
+return "<div class='box' style='opacity:"+
+(on?1:.35)+
+"'><b>"+icon+" "+name+"</b>"+
+"<div class='muted'>"+
+(on?"✓ Unlocked":"🔒 Locked")+
+"</div></div>";
+
 }
 
 function renderProgress(){
-let total=30*8,done=completedHours();
+
+let total=30*8;
+
+let done=completedHours();
+
 let pct=Math.round(done/total*100);
-document.getElementById("totalBar").style.width=pct+"%";
-document.getElementById("totalText").textContent=done+" / "+total+" Stunden-Sessions • "+pct+"%";
+
+document.getElementById("totalBar").style.width=
+pct+"%";
+
+document.getElementById("totalText").textContent=
+done+
+" / "+
+total+
+" Stunden-Sessions • "+
+pct+
+"%";
 
 let p=dayCompletion(cur)*100;
-document.getElementById("dayBar").style.width=p+"%";
-document.getElementById("dayPct").textContent=Math.round(p)+"%";
-document.getElementById("dayCircle").style.setProperty("--deg",p*3.6+"deg");
+
+document.getElementById("dayBar").style.width=
+p+"%";
+
+document.getElementById("dayPct").textContent=
+Math.round(p)+"%";
+
+document.getElementById("dayCircle")
+.style
+.setProperty(
+"--deg",
+p*3.6+"deg"
+);
+
 document.getElementById("dayStats").textContent=
-Math.round(p/100*8)+" / 8 Stunden abgeschlossen";
+Math.round(p/100*8)+
+" / 8 Stunden abgeschlossen";
+
 }
 
 function toggleDash(){
+
 let d=document.getElementById("dashboard");
+
 d.classList.toggle("hidden");
-if(!d.classList.contains("hidden"))dashboard();
+
+if(!d.classList.contains("hidden"))
+
+dashboard();
+
 }
 
 function startTimer(){
+
 if(intv)return;
+
 intv=setInterval(()=>{
-if(sec<=0){pauseTimer();alert("⏰ سالا الوقت!");return}
-sec--;drawTimer();
-},1000);
+
+if(sec<=0){
+
+pauseTimer();
+
+alert("⏰ سالا الوقت!");
+
+return;
+
 }
 
-function pauseTimer(){clearInterval(intv);intv=null}
+sec--;
 
-function resetTimer(){pauseTimer();sec=3600;drawTimer()}
+drawTimer();
 
-function setTimer(m){pauseTimer();sec=m*60;drawTimer()}
+},1000);
+
+}
+
+function pauseTimer(){
+
+clearInterval(intv);
+
+intv=null;
+
+}
+
+function resetTimer(){
+
+pauseTimer();
+
+sec=3600;
+
+drawTimer();
+
+}
+
+function setTimer(m){
+
+pauseTimer();
+
+sec=m*60;
+
+drawTimer();
+
+}
 
 function drawTimer(){
-let m=Math.floor(sec/60),s=sec%60;
+
+let m=Math.floor(sec/60);
+
+let s=sec%60;
+
 document.getElementById("timer").textContent=
-String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+
+String(m).padStart(2,"0")+
+":"+
+String(s).padStart(2,"0");
+
 let pct=1-sec/3600;
-document.getElementById("timerCircle").style.setProperty("--deg",pct*360+"deg");
+
+document.getElementById("timerCircle")
+.style
+.setProperty(
+"--deg",
+pct*360+"deg"
+);
+
 }
 
 function wipe(){
+
 if(confirm("مسح جميع التقدم؟")){
-S={done:{},vocab:{},quiz:{},errors:{},writing:{},mock:{},timerHours:{}};
-save();render();
+
+S={
+done:{},
+vocab:{},
+quiz:{},
+errors:{},
+writing:{},
+mock:{},
+timerHours:{}
+};
+
+save();
+
+render();
+
 }
+
 }
 
 selectDays();
+
 document.getElementById("daySelect").value=cur;
+
 render();
+
 drawTimer();
 
 if("serviceWorker"in navigator){
-window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js"));
+
+window.addEventListener(
+"load",
+()=>{
+navigator.serviceWorker.register("./sw.js");
 }
+);
+
+}
+
 </script>
 
 </body>
-  </html>
+ </html>
