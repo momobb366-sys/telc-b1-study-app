@@ -5,45 +5,48 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#172033">
 <link rel="manifest" href="manifest.webmanifest">
-<title>TELC B1 Study App v3</title>
+<title>TELC B1 Study App v4</title>
 
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#f3f5f9;color:#172033;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-header{background:#172033;color:#fff;padding:17px 14px;position:sticky;top:0;z-index:20}
+header{background:#172033;color:#fff;padding:12px 14px;position:sticky;top:0;z-index:50}
 .wrap{max-width:1000px;margin:auto;padding:0 14px}
-h1{font-size:21px;margin:0 0 4px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+h1{font-size:19px;margin:0}
 h2{font-size:18px;margin:6px 0 10px}
 h3{font-size:15px;margin:0 0 7px}
-p{line-height:1.5}
-.muted,.small{font-size:12px;color:#667085}
-.muted{color:#d7dce6}
-.card{background:#fff;border-radius:16px;padding:16px;margin:13px 0;box-shadow:0 3px 15px #0001}
-.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 button,select,textarea{font:inherit}
-button,select{padding:10px 12px;border:1px solid #d5dbe5;border-radius:10px;background:#fff}
+button,select{padding:9px 11px;border:1px solid #d5dbe5;border-radius:10px;background:#fff}
 button.primary{background:#172033;color:#fff}
 button.green{background:#2f855a;color:#fff}
+.levelBtn{background:#fff;color:#172033;font-weight:800;border:0}
+.card{background:#fff;border-radius:16px;padding:16px;margin:13px 0;box-shadow:0 3px 15px #0001}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.muted{font-size:12px;color:#d7dce6}
+.small{font-size:12px;color:#667085}
 .progress{height:12px;background:#e8ebf0;border-radius:99px;overflow:hidden;margin:9px 0}
 .bar{height:100%;background:#2f855a;width:0;transition:.3s}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .box{border:1px solid #e1e6ed;border-radius:13px;padding:13px}
 .task{cursor:pointer}
 .task.done{background:#edf8f1;border-color:#9bd2ae}
 .task.done h3{text-decoration:line-through}
 .badge{display:inline-block;border-radius:99px;background:#eef1f6;padding:5px 9px;font-size:12px;margin:2px}
+.skill{border:1px solid #e1e6ed;border-radius:13px;padding:12px;margin:8px 0}
+.skilltop{display:flex;justify-content:space-between;align-items:center}
+.skillbar{height:10px;background:#e8ebf0;border-radius:99px;overflow:hidden;margin-top:7px}
+.skillbar div{height:100%;background:#2f855a}
+.big{font-size:30px;font-weight:800}
 textarea{width:100%;min-height:120px;border:1px solid #d5dbe5;border-radius:10px;padding:10px}
 .timer{font-size:32px;font-weight:800;text-align:center;margin:7px}
 .quizq{border:1px solid #e1e6ed;border-radius:12px;padding:12px;margin:8px 0}
 .quizq.correct{background:#edf8f1}
 .quizq.wrong{background:#fff0f0}
 .check{display:block;padding:7px 0}
-.skill{border:1px solid #e1e6ed;border-radius:13px;padding:13px}
-.skilltop{display:flex;justify-content:space-between;align-items:center}
-.level{font-size:12px;font-weight:700}
-.big{font-size:28px;font-weight:800}
-.weak{background:#fff7ed}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
+#dashboard{display:none}
+#dashboard.open{display:block}
+@media(max-width:600px){.top h1{font-size:16px}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -51,8 +54,13 @@ textarea{width:100%;min-height:120px;border:1px solid #d5dbe5;border-radius:10px
 
 <header>
 <div class="wrap">
-<h1>🇩🇪 TELC B1 — Study App v3</h1>
-<div class="muted">30 Tage × 8 Stunden • A1/A2 → B1 → TELC</div>
+<div class="top">
+<div>
+<h1>🇩🇪 TELC B1</h1>
+<div class="muted">30 Tage × 8 Stunden</div>
+</div>
+<button class="levelBtn" onclick="toggleDashboard()">📊 <span id="headerLevel">A2</span> <span id="headerPercent">0%</span></button>
+</div>
 </div>
 </header>
 
@@ -67,23 +75,53 @@ textarea{width:100%;min-height:120px;border:1px solid #d5dbe5;border-radius:10px
 <div id="stats" class="small"></div>
 </section>
 
-
-<!-- DASHBOARD -->
-
-<section class="card">
+<section id="dashboard" class="card">
 <h2>📈 Mein Niveau</h2>
-<div id="dashboard"></div>
+
+<div class="box">
+<div class="small">Gesamtniveau</div>
+<div class="big" id="overallLevel">A2</div>
+<div class="progress"><div id="overallBar" class="bar"></div></div>
+<div id="overallText" class="small"></div>
+</div>
+
+<div id="skillDashboard"></div>
+
+<div class="grid">
+<div class="box">
+<b>🇩🇪 A1/A2 Foundation</b>
+<div class="progress"><div id="foundationBar" class="bar"></div></div>
+<span id="foundationText" class="small"></span>
+</div>
+
+<div class="box">
+<b>🟢 B1 Gesamt</b>
+<div class="progress"><div id="b1Bar" class="bar"></div></div>
+<span id="b1Text" class="small"></span>
+</div>
+
+<div class="box">
+<b>🎯 TELC B1 Readiness</b>
+<div class="progress"><div id="telcBar" class="bar"></div></div>
+<span id="telcText" class="small"></span>
+</div>
+</div>
+
+<div class="box" style="margin-top:10px">
+<b>📉 أضعف مهارة:</b>
+<span id="weakSkill"></span>
+<br>
+<b>💪 أقوى مهارة:</b>
+<span id="strongSkill"></span>
+</div>
 </section>
 
-
 <section id="lesson" class="card"></section>
-
 
 <section class="card">
 <h2>🎯 8-Stunden-Checkliste</h2>
 <div id="tasks"></div>
 </section>
-
 
 <section class="card">
 <h2>🧠 Mini-Quiz</h2>
@@ -92,19 +130,16 @@ textarea{width:100%;min-height:120px;border:1px solid #d5dbe5;border-radius:10px
 <span id="quizScore" class="small"></span>
 </section>
 
-
 <section class="card">
 <h2>🎧 Hören</h2>
 <p id="listening"></p>
-<p class="small">مرة للفكرة العامة → مرة للتفاصيل → سجل الأخطاء.</p>
+<p class="small">مرة للفكرة العامة، مرة للتفاصيل، ومن بعد حلل الأخطاء.</p>
 </section>
-
 
 <section class="card">
 <h2>📖 Lesen</h2>
 <p id="reading"></p>
 </section>
-
 
 <section class="card">
 <h2>✍️ Schreiben</h2>
@@ -113,19 +148,16 @@ textarea{width:100%;min-height:120px;border:1px solid #d5dbe5;border-radius:10px
 <p class="small">☐ جميع النقاط ☐ Verbposition ☐ Konnektoren ☐ مراجعة الأخطاء</p>
 </section>
 
-
 <section class="card">
 <h2>🗣️ Sprechen</h2>
 <p id="speaking"></p>
 <p class="small">سجل 5–10 دقائق وعاود الجمل الصعبة.</p>
 </section>
 
-
 <section class="card">
 <h2>📝 Error Log</h2>
 <textarea id="errors" placeholder="الخطأ → التصحيح → السبب"></textarea>
 </section>
-
 
 <section class="card">
 <h2>⏱️ Timer</h2>
@@ -141,12 +173,10 @@ textarea{width:100%;min-height:120px;border:1px solid #d5dbe5;border-radius:10px
 </div>
 </section>
 
-
 <section class="card">
 <h2>📊 Progress</h2>
 <div id="phase"></div>
 </section>
-
 
 <section class="card">
 <button onclick="wipe()">مسح جميع البيانات</button>
@@ -154,91 +184,45 @@ textarea{width:100%;min-height:120px;border:1px solid #d5dbe5;border-radius:10px
 
 </main>
 
-
 <script>
-
-/* =========================
-   DATA
-========================= */
 
 const DAYS=[];
 
-const grammar1=[
+const grammar=[
 ["Nebensätze","weil, dass, wenn","Verb am Ende"],
 ["Akkusativ/Dativ","den/dem, einen/einem","Objekt und Präposition"],
 ["Perfekt/Präteritum","haben/sein, war/hatte","Vergangenheit"],
 ["Konnektoren","deshalb, trotzdem, obwohl","Verbindung von Ideen"],
 ["Verben mit Präpositionen","für, auf, an","Rektion"],
-["Adjektive","zuverlässig, freundlich","Adjektivendungen"],
+["Adjektive","zuverlässig, freundlich","Endungen"],
 ["Relativsätze","der/die/das","Sätze verbinden"],
 ["Infinitiv mit zu","um ... zu / ohne ... zu","Absicht"],
-["Indirekte Fragen","ob / Fragewort","höfliche Fragen"],
+["Indirekte Fragen","ob / Fragewort","Höfliche Fragen"],
 ["Gesamt-Review","B1 Grammatik","Fehlerkartei"]
 ];
 
-const phase2=[
-"Output: E-Mail + Meinung",
-"Output: Verben mit Präpositionen",
-"Output: Relativsätze",
-"Output: Pläne und Absichten",
-"Output: Beschreiben",
-"Output: Formelle E-Mail",
-"Output: Meinung + Gründe",
-"Output: Persönliche Erfahrung",
-"Output: Vorschläge",
-"Output: B1 Wochen-Mock"
-];
-
-const phase3=[
-"Lesen","Hören","Schreiben","Sprechen",
-"Lesen + Hören","Schreiben + Sprechen",
-"Mini-Mock","Schwachstelle","Full Mock","Analyse + Review"
-];
-
 for(let i=1;i<=30;i++){
-
-let d={
-day:i,
-phase:i<=10?
+let phase=i<=10?
 "Phase 1 — A1/A2 Repair + B1 Aufbau":
 i<=20?
 "Phase 2 — B1 Aufbau + Output":
-"Phase 3 — TELC B1 Intensiv"
-};
+"Phase 3 — TELC B1 Intensiv";
 
-if(i<=10){
-let g=grammar1[i-1];
-d.grammar=g[0];
-d.explanation=g[1];
-d.focus=g[2];
-d.exercise="5–10 Übungen + eigene Sätze";
-}else if(i<=20){
-d.grammar=phase2[i-11];
-d.explanation="استعمل Grammar فـ10 جمل من عندك";
-d.focus="Konnektoren + Wortschatz + Output";
-d.exercise="طبق ثم صحح الأخطاء";
-}else{
-d.grammar=phase3[i-21];
-d.explanation="Prüfungsstrategie + Zeitmanagement";
-d.focus="TELC Fehleranalyse";
-d.exercise="Timer + Analyse";
+let g=grammar[(i-1)%10];
+
+DAYS.push({
+day:i,
+phase:phase,
+grammar:i<=10?g[0]:
+i<=20?"Output: "+["E-Mail","Meinung","Relativsätze","Pläne","Beschreiben","Formelle E-Mail","Meinung + Gründe","Persönliche Erfahrung","Vorschläge","B1 Wochen-Mock"][i-11]:
+["Lesen","Hören","Schreiben","Sprechen","Lesen + Hören","Schreiben + Sprechen","Mini-Mock","Schwachstelle","Full Mock","Analyse + Review"][i-21],
+explanation:g[1],
+focus:g[2],
+exercise:"5–10 Übungen + eigene Sätze + Fehleranalyse",
+reading:"اقرا نص B1/TELC-like، جاوب قبل القاموس، ومن بعد حلل الأخطاء.",
+listening:"سمع 5–10 دقايق B1: الفكرة العامة ثم التفاصيل."
+});
 }
-
-d.reading=i<=20?
-"اقرا نص B1/TELC-like، جاوب قبل القاموس، ثم حلل الأخطاء.":
-"خدم Teil TELC تحت Timer وحلل كل خطأ.";
-
-d.listening=i<=20?
-"سمع B1: مرة للفكرة العامة ومرة للتفاصيل.":
-"خدم Hören تحت Timer وسجل الكلمات المفتاحية.";
-
-DAYS.push(d);
-}
-
-
-/* =========================
-   QUIZ
-========================= */
 
 const QUIZ=[
 ["Ich lerne Deutsch, ___ ich in Deutschland arbeiten möchte.",["weil","obwohl","trotzdem"],0],
@@ -253,42 +237,26 @@ const QUIZ=[
 ["Ich fahre ___ Bus zur Arbeit.",["mit dem","mit den","mit der"],0]
 ];
 
+const KEY="telcB1StudyV4";
 
-/* =========================
-   STORAGE
-========================= */
+let old=JSON.parse(localStorage.getItem("telcB1StudyV3")||"null");
+let S=JSON.parse(localStorage.getItem(KEY)||"null");
 
-const KEY="telcB1StudyV3";
+if(!S){
+S=old||{done:{},errors:{},writing:{},quiz:{},skills:{}};
+}
 
-let S=JSON.parse(
-localStorage.getItem(KEY) ||
-'{"done":{},"errors":{},"writing":{},"quiz":{}}'
-);
-
-S.done=S.done||{};
-S.errors=S.errors||{};
-S.writing=S.writing||{};
-S.quiz=S.quiz||{};
-
-let cur=1;
-let sec=3600;
-let intv=null;
-
-
-/* =========================
-   DAILY BLOCKS
-========================= */
+let cur=1,sec=3600,intv=null;
 
 const blocks=[
-["🔵 A1/A2 Review","1h30"],
-["🟢 B1 Grammatik","1h30"],
-["📚 Wortschatz","1h"],
-["🎧 Hören","1h"],
-["📖 Lesen","1h"],
-["✍️ Schreiben","1h"],
-["🗣️ Sprechen","1h"]
+["🔵 A1/A2 Review","1h30","foundation"],
+["🟢 B1 Grammatik","1h30","grammar"],
+["📚 Wortschatz","1h","vocab"],
+["🎧 Hören","1h","listening"],
+["📖 Lesen","1h","reading"],
+["✍️ Schreiben","1h","writing"],
+["🗣️ Sprechen","1h","speaking"]
 ];
-
 
 const writing=[
 "اكتب 80–100 كلمة على موضوع اليوم واستعمل Grammar ديال اليوم.",
@@ -297,15 +265,15 @@ const writing=[
 "شرح علاش كتتعلم الألمانية.",
 "عطي نصائح على الصحة أو الروتين.",
 "وصف شخص أو زميل.",
-"كتب E-Mail على مهمة فالشغل.",
-"حكي على سفر أو مشكل فالمواصلات.",
+"وصف الخدمة والمهام ديالك.",
+"حكي على رحلة أو مشكل فالنقل.",
 "طلب موعد أو معلومات بطريقة مهذبة.",
-"عاود أصعب موضوع كتابة واصلح الأخطاء."
+"عاود أصعب موضوع كتابة واصلح أخطاء الأسبوع."
 ];
 
 const speaking=[
 "هضر 2 دقايق على الروتين ديالك.",
-"وصف السكن المثالي.",
+"وصف السكن اللي عندك والسكن المثالي.",
 "حكي على تجربة مهمة.",
 "علاش كتتعلم الألمانية؟",
 "شنو كتدير باش تبقى بصحة مزيانة؟",
@@ -315,11 +283,6 @@ const speaking=[
 "كيفاش تطلب موعد؟",
 "هضر على أكثر 3 أخطاء كيتعاودو عندك."
 ];
-
-
-/* =========================
-   BASIC FUNCTIONS
-========================= */
 
 function save(){
 localStorage.setItem(KEY,JSON.stringify(S));
@@ -336,25 +299,14 @@ render();
 }
 
 function renderSelect(){
-
 let x=document.getElementById("day");
-
-x.innerHTML=DAYS.map(d=>
-"<option value='"+d.day+"'>Day "+d.day+" — "+d.phase+"</option>"
-).join("");
-
+x.innerHTML=DAYS.map(d=>"<option value='"+d.day+"'>Day "+d.day+" — "+d.phase+"</option>").join("");
 x.value=cur;
-
 x.onchange=()=>{
 cur=+x.value;
 render();
 };
 }
-
-
-/* =========================
-   RENDER
-========================= */
 
 function render(){
 
@@ -365,32 +317,24 @@ document.getElementById("dayTitle").textContent="Day "+cur;
 document.getElementById("lesson").innerHTML=
 "<span class='badge'>"+d.phase+"</span>"+
 "<h2>"+d.grammar+"</h2>"+
-"<div class='box'>"+
-"<b>شرح:</b> "+d.explanation+
+"<div class='box'><b>شرح:</b> "+d.explanation+
 "<br><b>Focus:</b> "+d.focus+
-"<br><b>Übung:</b> "+d.exercise+
-"</div>";
+"<br><b>Übung:</b> "+d.exercise+"</div>";
 
 document.getElementById("tasks").innerHTML=
 "<div class='grid'>"+
 blocks.map((b,i)=>
 "<div class='box task "+(done(i)?"done":"")+
 "' onclick='toggle("+i+")'>"+
-"<h3>"+b[0]+"</h3>"+
-"<b>⏱️ "+b[1]+"</b>"+
-"<p class='small'>اضغط ملي تكمل الحصة.</p>"+
-"</div>"
+"<h3>"+b[0]+"</h3><b>⏱️ "+b[1]+
+"</b><p class='small'>اضغط ملي تكمل الحصة.</p></div>"
 ).join("")+
 "</div>";
 
 document.getElementById("listening").textContent=d.listening;
 document.getElementById("reading").textContent=d.reading;
-
-document.getElementById("writingPrompt").textContent=
-writing[Math.min(cur-1,9)];
-
-document.getElementById("speaking").textContent=
-speaking[Math.min(cur-1,9)];
+document.getElementById("writingPrompt").textContent=writing[Math.min(cur-1,9)];
+document.getElementById("speaking").textContent=speaking[Math.min(cur-1,9)];
 
 document.getElementById("errors").value=S.errors[cur]||"";
 document.getElementById("writing").value=S.writing[cur]||"";
@@ -403,17 +347,12 @@ save();
 document.getElementById("writing").oninput=e=>{
 S.writing[cur]=e.target.value;
 save();
-renderDashboard();
 };
 
 renderQuiz();
 stats();
+dashboard();
 }
-
-
-/* =========================
-   QUIZ
-========================= */
 
 function renderQuiz(){
 
@@ -424,19 +363,13 @@ QUIZ.slice(0,n).map((q,i)=>
 "<div class='quizq' id='q"+i+"'>"+
 "<b>"+(i+1)+". "+q[0]+"</b>"+
 q[1].map((a,j)=>
-"<label class='check'>"+
-"<input type='radio' name='q"+i+"' value='"+j+"'> "+a+
-"</label>"
+"<label class='check'><input type='radio' name='q"+i+"' value='"+j+"'> "+a+"</label>"
 ).join("")+
 "</div>"
 ).join("");
 
-let old=S.quiz[cur];
-
-document.getElementById("quizScore").textContent=
-old?" — آخر Score: "+old.score+"/"+old.n:"";
+document.getElementById("quizScore").textContent="";
 }
-
 
 function checkQuiz(){
 
@@ -446,265 +379,154 @@ let score=0;
 for(let i=0;i<n;i++){
 
 let q=QUIZ[i];
-
-let a=document.querySelector(
-"input[name='q"+i+"']:checked"
-);
-
+let a=document.querySelector("input[name=q"+i+"]:checked");
 let box=document.getElementById("q"+i);
 
 box.classList.remove("correct","wrong");
 
-if(a && +a.value===q[2]){
+if(a&&+a.value===q[2]){
 score++;
 box.classList.add("correct");
 }else{
 box.classList.add("wrong");
 }
+
 }
 
-S.quiz[cur]={
-score:score,
-n:n
-};
-
+S.quiz[cur]=score/n;
 save();
 
 document.getElementById("quizScore").textContent=
 " — Score: "+score+"/"+n;
 
-stats();
+dashboard();
 }
-
-
-/* =========================
-   PROGRESS CALCULATIONS
-========================= */
-
-function taskRate(task,a,b){
-
-let n=0;
-let total=b-a+1;
-
-for(let d=a;d<=b;d++){
-if(S.done[d+"-"+task])n++;
-}
-
-return total?n/total:0;
-}
-
-
-function quizAverage(a,b){
-
-let total=0;
-let max=0;
-
-for(let d=a;d<=b;d++){
-
-if(S.quiz[d]){
-total+=S.quiz[d].score;
-max+=S.quiz[d].n;
-}
-}
-
-return max?total/max:0;
-}
-
-
-function writingRate(a,b){
-
-let n=0;
-let total=b-a+1;
-
-for(let d=a;d<=b;d++){
-
-if((S.writing[d]||"").trim().length>=30){
-n++;
-}
-}
-
-return total?n/total:0;
-}
-
-
-function levelName(p){
-
-if(p>=.80)return "B1 قوي";
-if(p>=.60)return "B1 قيد التطور";
-if(p>=.40)return "A2+ → B1";
-if(p>=.20)return "A2 قيد البناء";
-
-return "أساس يحتاج مراجعة";
-}
-
-
-/* =========================
-   DASHBOARD
-========================= */
-
-function renderDashboard(){
-
-let skills=[
-["🧠 Wortschatz","المفردات",2],
-["📚 Grammatik","القواعد",1],
-["🎧 Hören","الاستماع",3],
-["📖 Lesen","القراءة",4],
-["✍️ Schreiben","الكتابة",5],
-["🗣️ Sprechen","التحدث",6]
-];
-
-let html="";
-
-skills.forEach(s=>{
-
-let p=
-taskRate(s[2],1,30)*.7+
-quizAverage(1,30)*.3;
-
-if(s[2]===5){
-
-p=
-taskRate(5,1,30)*.6+
-writingRate(1,30)*.2+
-quizAverage(1,30)*.2;
-
-}
-
-let percent=Math.round(p*100);
-
-html+=
-"<div class='skill "+(percent<40?"weak":"")+"'>"+
-"<div class='skilltop'>"+
-"<b>"+s[0]+"</b>"+
-"<strong>"+percent+"%</strong>"+
-"</div>"+
-"<div class='progress'>"+
-"<div class='bar' style='width:"+percent+"%'></div>"+
-"</div>"+
-"<div class='small'>"+
-s[1]+" • "+levelName(p)+
-"</div>"+
-"</div>";
-
-});
-
-
-let overall=0;
-
-skills.forEach(s=>{
-overall+=taskRate(s[2],1,30);
-});
-
-overall/=skills.length;
-
-
-let a12=Math.round(
-(
-(taskRate(0,1,10)+quizAverage(1,10))/2
-)*100
-);
-
-
-let b1=Math.round(
-(
-overall*.8+
-quizAverage(11,20)*.2
-)*100
-);
-
-
-let telc=Math.round(
-(
-(
-taskRate(3,21,30)+
-taskRate(4,21,30)+
-taskRate(5,21,30)+
-taskRate(6,21,30)
-)/4*.7+
-quizAverage(21,30)*.3
-)*100
-);
-
-
-document.getElementById("dashboard").innerHTML=
-
-"<div class='grid'>"+
-
-"<div class='skill'>"+
-"<div class='small'>🇩🇪 A1/A2 Foundation</div>"+
-"<div class='big'>"+a12+"%</div>"+
-"<div class='progress'><div class='bar' style='width:"+a12+"%'></div></div>"+
-"<b>"+levelName(a12/100)+"</b>"+
-"</div>"+
-
-"<div class='skill'>"+
-"<div class='small'>🟢 B1 Gesamt</div>"+
-"<div class='big'>"+b1+"%</div>"+
-"<div class='progress'><div class='bar' style='width:"+b1+"%'></div></div>"+
-"<b>"+levelName(b1/100)+"</b>"+
-"</div>"+
-
-"<div class='skill'>"+
-"<div class='small'>🎯 TELC B1 Readiness</div>"+
-"<div class='big'>"+telc+"%</div>"+
-"<div class='progress'><div class='bar' style='width:"+telc+"%'></div></div>"+
-"<b>"+levelName(telc/100)+"</b>"+
-"</div>"+
-
-"</div>"+
-
-"<h3 style='margin-top:15px'>📊 المهارات</h3>"+
-
-"<div class='grid'>"+html+"</div>"+
-
-"<p class='small'>النسب كتتحدث تلقائياً حسب الحصص المكتملة، نتائج Quiz، والكتابة المسجلة.</p>";
-}
-
-
-/* =========================
-   GLOBAL PROGRESS
-========================= */
 
 function stats(){
 
 let total=210;
-
 let n=Object.values(S.done).filter(Boolean).length;
 
-document.getElementById("bar").style.width=
-(n/total*100)+"%";
+document.getElementById("bar").style.width=(n/total*100)+"%";
 
 document.getElementById("stats").textContent=
-n+" / "+total+
-" حصص مكتملة • "+
-Math.round(n/total*100)+"%";
+n+" / "+total+" حصص مكتملة • "+Math.round(n/total*100)+"%";
 
 let a=[0,0,0];
 
-for(let d=1;d<=30;d++){
-
-for(let i=0;i<7;i++){
-
-if(S.done[d+"-"+i]){
+for(let d=1;d<=30;d++)
+for(let i=0;i<7;i++)
+if(S.done[d+"-"+i])
 a[d<=10?0:d<=20?1:2]++;
-}
-
-}
-
-}
 
 document.getElementById("phase").innerHTML=
 "<span class='badge'>Phase 1: "+a[0]+"/70</span>"+
 "<span class='badge'>Phase 2: "+a[1]+"/70</span>"+
 "<span class='badge'>Phase 3: "+a[2]+"/70</span>";
-
-renderDashboard();
 }
 
+function skillScore(skill){
 
-/* =========================
-   TIMER
-========================= */
+let total=30*7;
+let completed=0;
+
+for(let d=1;d<=30;d++){
+
+let index=blocks.findIndex(x=>x[2]===skill);
+
+if(index>=0 && S.done[d+"-"+index])
+completed++;
+}
+
+let base=completed/30;
+
+let quiz=Object.values(S.quiz||{});
+let q=quiz.length?
+quiz.reduce((a,b)=>a+b,0)/quiz.length:0;
+
+return Math.round((base*.7+q*.3)*100);
+}
+
+function dashboard(){
+
+let skills=[
+["🧠 Wortschatz","vocab"],
+["📚 Grammatik","grammar"],
+["🎧 Hören","listening"],
+["📖 Lesen","reading"],
+["✍️ Schreiben","writing"],
+["🗣️ Sprechen","speaking"]
+];
+
+let scores=skills.map(x=>[x[0],skillScore(x[1])]);
+
+document.getElementById("skillDashboard").innerHTML=
+scores.map(x=>
+"<div class='skill'>"+
+"<div class='skilltop'><b>"+x[0]+"</b><b>"+x[1]+"%</b></div>"+
+"<div class='skillbar'><div style='width:"+x[1]+"%'></div></div>"+
+"</div>"
+).join("");
+
+let avg=Math.round(scores.reduce((a,b)=>a+b[1],0)/scores.length);
+
+let level=
+avg<30?"A2":
+avg<45?"A2+":
+avg<60?"B1-":
+avg<75?"B1":
+"B1+";
+
+document.getElementById("overallLevel").textContent=level;
+document.getElementById("overallBar").style.width=avg+"%";
+document.getElementById("overallText").textContent=
+"Gesamtfortschritt: "+avg+"%";
+
+document.getElementById("headerLevel").textContent=level;
+document.getElementById("headerPercent").textContent=avg+"%";
+
+let foundation=Math.min(100,Math.round(
+Object.keys(S.done).filter(k=>k.split("-")[0]<=10).length/70*100
+));
+
+let b1=Math.min(100,Math.round(
+Object.keys(S.done).filter(k=>{
+let d=+k.split("-")[0];
+return d>=11&&d<=20;
+}).length/70*100
+));
+
+let telc=Math.round(
+(scores[2][1]+scores[3][1]+scores[4][1]+scores[5][1])/4
+);
+
+document.getElementById("foundationBar").style.width=foundation+"%";
+document.getElementById("foundationText").textContent=foundation+"%";
+
+document.getElementById("b1Bar").style.width=b1+"%";
+document.getElementById("b1Text").textContent=b1+"%";
+
+document.getElementById("telcBar").style.width=telc+"%";
+document.getElementById("telcText").textContent=telc+"%";
+
+let sorted=[...scores].sort((a,b)=>a[1]-b[1]);
+
+document.getElementById("weakSkill").textContent=
+sorted[0][0]+" — "+sorted[0][1]+"%";
+
+document.getElementById("strongSkill").textContent=
+sorted[sorted.length-1][0]+" — "+sorted[sorted.length-1][1]+"%";
+}
+
+function toggleDashboard(){
+
+let d=document.getElementById("dashboard");
+
+d.classList.toggle("open");
+
+if(d.classList.contains("open"))
+dashboard();
+}
 
 function draw(){
 
@@ -712,20 +534,14 @@ let m=Math.floor(sec/60);
 let s=sec%60;
 
 document.getElementById("timer").textContent=
-String(m).padStart(2,"0")+":"+
-String(s).padStart(2,"0");
+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
 }
-
 
 function setT(m){
-
 pause();
-
 sec=m*60;
-
 draw();
 }
-
 
 function start(){
 
@@ -734,75 +550,44 @@ if(intv)return;
 intv=setInterval(()=>{
 
 if(sec<=0){
-
 pause();
-
 alert("⏰ سالا الوقت");
-
 return;
-
 }
 
 sec--;
-
 draw();
 
 },1000);
-
 }
 
-
 function pause(){
-
 clearInterval(intv);
-
 intv=null;
 }
 
-
 function resetT(){
-
 pause();
-
 sec=3600;
-
 draw();
 }
-
-
-/* =========================
-   RESET DATA
-========================= */
 
 function wipe(){
 
 if(confirm("مسح جميع التقدم؟")){
 
-S={
-done:{},
-errors:{},
-writing:{},
-quiz:{}
-};
+S={done:{},errors:{},writing:{},quiz:{},skills:{}};
 
 save();
-
 render();
 
 }
-
 }
-
-
-/* =========================
-   START APP
-========================= */
 
 renderSelect();
 render();
 draw();
 
 </script>
-
 </body>
 </html>
